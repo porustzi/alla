@@ -4,181 +4,297 @@ backend:
 
 local_backend: true
 
-media_folder: "public/images"
-public_folder: "/images"
+media_folder: public/images
+public_folder: /images
 
 collections:
-  - name: "site"
-    label: "Сайт (тексти)"
+  - name: site
+    label: Сайт (тексти)
     delete: false
     editor:
       preview: false
     files:
-      - name: "settings"
-        label: "Текстові налаштування"
-        file: "src/content/site.json"
-        format: "json"
+      - name: settings
+        label: Текстові налаштування
+        file: src/content/site.json
+        format: json
         fields:
-          - label: "Навігація"
-            name: "navbar"
-            widget: "object"
+          - label: Навігація
+            name: navbar
+            widget: object
             fields:
-              - { label: "Логотип", name: "logo", widget: "string" }
-              - label: "Посилання"
-                name: "links"
-                widget: "list"
+              - label: Логотип
+                name: logo
+                widget: string
+              - label: Посилання
+                name: links
+                widget: list
                 fields:
-                  - { label: "ID (якір)", name: "id", widget: "string" }
-                  - { label: "Текст", name: "label", widget: "string" }
-              - { label: "Підпис меню", name: "menuLabel", widget: "string" }
-          - label: "Головна (Hero)"
-            name: "hero"
-            widget: "object"
+                  - label: ID (якір)
+                    name: id
+                    widget: string
+                  - label: Текст
+                    name: label
+                    widget: string
+              - label: Підпис меню
+                name: menuLabel
+                widget: string
+
+          - label: Головна (Hero)
+            name: hero
+            widget: object
             fields:
-              - { label: "Бейдж", name: "badge", widget: "string" }
-              - { label: "Кнопка 1", name: "primaryButton", widget: "string" }
-              - { label: "Кнопка 2", name: "secondaryButton", widget: "string" }
-          - label: "Про мене"
-            name: "about"
-            widget: "object"
+              - label: Бейдж
+                name: badge
+                widget: string
+              - label: Кнопка 1
+                name: primaryButton
+                widget: string
+              - label: Кнопка 2
+                name: secondaryButton
+                widget: string
+
+          - label: Про мене
+            name: about
+            widget: object
             fields:
-              - { label: "Заголовок", name: "title", widget: "string" }
-              - label: "Деталі"
-                name: "details"
-                widget: "list"
+              - label: Заголовок
+                name: title
+                widget: string
+              - label: Деталі
+                name: details
+                widget: list
                 fields:
-                  - { label: "Підпис", name: "label", widget: "string" }
-                  - { label: "Іконка", name: "icon", widget: "string" }
-                  - { label: "Поле профілю", name: "field", widget: "string" }
-              - { label: "Заголовок досягнень", name: "achievementsTitle", widget: "string" }
-          - label: "Результати"
-            name: "results"
-            widget: "object"
+                  - label: Підпис
+                    name: label
+                    widget: string
+                  - label: Іконка
+                    name: icon
+                    widget: string
+                  - label: Поле профілю
+                    name: field
+                    widget: string
+              - label: Заголовок досягнень
+                name: achievementsTitle
+                widget: string
+
+          - label: Результати
+            name: results
+            widget: object
             fields:
-              - { label: "Заголовок", name: "title", widget: "string" }
-              - { label: "Опис", name: "description", widget: "text" }
-              - label: "Категорії"
-                name: "categories"
-                widget: "list"
+              - label: Заголовок
+                name: title
+                widget: string
+              - label: Опис
+                name: description
+                widget: text
+              - label: Категорії
+                name: categories
+                widget: list
                 fields:
-                  - { label: "Назва", name: "name", widget: "string" }
-                  - { label: "Іконка", name: "icon", widget: "string" }
-                  - { label: "CSS колір", name: "color", widget: "string" }
-              - { label: "Fallback колір", name: "fallbackCategory", widget: "string" }
-          - label: "Методична робота"
-            name: "methods"
-            widget: "object"
-            fields:
-              - { label: "Заголовок", name: "title", widget: "string" }
-              - { label: "Читати далі", name: "readMore", widget: "string" }
-          - label: "Контакти"
-            name: "contact"
-            widget: "object"
-            fields:
-              - { label: "Заголовок", name: "title", widget: "string" }
-              - { label: "Email підпис", name: "emailLabel", widget: "string" }
-              - { label: "Телефон підпис", name: "phoneLabel", widget: "string" }
-              - { label: "Профіль підпис", name: "profileLabel", widget: "string" }
-          - label: "Футер"
-            name: "footer"
-            widget: "object"
-            fields:
-              - { label: "Логотип", name: "logo", widget: "string" }
-              - { label: "Права", name: "rights", widget: "string" }
+                  - label: Назва
+                    name: name
+                    widget: string
+                  - label: Іконка
+                    name: icon
+                    widget: string
+                  - label: CSS колір
+                    name: color
+                    widget: string
+              - label: Запасний колір
+                name: fallbackCategory
+                widget: string
 
-  - name: "about"
-    label: "Про мене (профіль)"
+          - label: Методична робота
+            name: methods
+            widget: object
+            fields:
+              - label: Заголовок
+                name: title
+                widget: string
+              - label: Читати далі
+                name: readMore
+                widget: string
+
+          - label: Контакти
+            name: contact
+            widget: object
+            fields:
+              - label: Заголовок
+                name: title
+                widget: string
+              - label: Email підпис
+                name: emailLabel
+                widget: string
+              - label: Телефон підпис
+                name: phoneLabel
+                widget: string
+              - label: Профіль підпис
+                name: profileLabel
+                widget: string
+
+          - label: Футер
+            name: footer
+            widget: object
+            fields:
+              - label: Логотип
+                name: logo
+                widget: string
+              - label: Права
+                name: rights
+                widget: string
+
+  - name: profile
+    label: Профіль
     delete: false
     editor:
       preview: false
     files:
-      - name: "profile"
-        label: "Профіль"
-        file: "src/content/about/profile.json"
-        format: "json"
+      - name: profile_data
+        label: Персональні дані
+        file: src/content/about/profile.json
+        format: json
         fields:
-          - { label: "Ім'я", name: "name", widget: "string" }
-          - { label: "Посада", name: "title", widget: "string" }
-          - { label: "Кредо", name: "credo", widget: "text" }
-          - { label: "Освіта", name: "education", widget: "text" }
-          - { label: "Досвід", name: "experience", widget: "text" }
-          - { label: "Рівень мови", name: "language_level", widget: "string" }
-          - { label: "Категорія", name: "category", widget: "string" }
+          - label: Ім'я
+            name: name
+            widget: string
+          - label: Посада
+            name: title
+            widget: string
+          - label: Кредо
+            name: credo
+            widget: text
+          - label: Освіта
+            name: education
+            widget: text
+          - label: Досвід
+            name: experience
+            widget: text
+          - label: Рівень мови
+            name: language_level
+            widget: string
+          - label: Категорія
+            name: category
+            widget: string
 
-  - name: "contact"
-    label: "Контакти (дані)"
+  - name: contact
+    label: Контакти
     delete: false
     editor:
       preview: false
     files:
-      - name: "contact_info"
-        label: "Контактна інформація"
-        file: "src/content/contact/contact.json"
-        format: "json"
+      - name: contact_data
+        label: Контактна інформація
+        file: src/content/contact/contact.json
+        format: json
         fields:
-          - { label: "Email", name: "email", widget: "string" }
-          - { label: "Телефон", name: "phone", widget: "string", required: false }
-          - label: "Посилання"
-            name: "links"
-            widget: "list"
+          - label: Email
+            name: email
+            widget: string
+          - label: Телефон
+            name: phone
+            widget: string
+            required: false
+          - label: Посилання
+            name: links
+            widget: list
             fields:
-              - { label: "Платформа", name: "platform", widget: "string" }
-              - { label: "URL", name: "url", widget: "string" }
+              - label: Платформа
+                name: platform
+                widget: string
+              - label: URL
+                name: url
+                widget: string
 
-  - name: "results"
-    label: "Результати (дані)"
+  - name: results
+    label: Результати
     delete: false
     editor:
       preview: false
     files:
-      - name: "results_list"
-        label: "Список результатів"
-        file: "src/content/results/results.json"
-        format: "json"
+      - name: results_data
+        label: Список результатів
+        file: src/content/results/results.json
+        format: json
         fields:
-          - label: "Список"
-            name: "list"
-            widget: "list"
+          - label: Список
+            name: list
+            widget: list
             fields:
-              - { label: "Заголовок", name: "title", widget: "string" }
-              - { label: "Опис", name: "description", widget: "text" }
-              - { label: "Категорія", name: "category", widget: "select", options: ["Успішність", "Олімпіади", "Конкурси", "Проєкти"] }
-              - { label: "Рік", name: "year", widget: "number", value_type: "int" }
+              - label: Заголовок
+                name: title
+                widget: string
+              - label: Опис
+                name: description
+                widget: text
+              - label: Категорія
+                name: category
+                widget: select
+                options:
+                  - Успішність
+                  - Олімпіади
+                  - Конкурси
+                  - Проєкти
+              - label: Рік
+                name: year
+                widget: number
+                value_type: int
 
-  - name: "achievements"
-    label: "Досягнення (дані)"
+  - name: achievements
+    label: Досягнення
     delete: false
     editor:
       preview: false
     files:
-      - name: "achievements_list"
-        label: "Список досягнень"
-        file: "src/content/achievements/achievements.json"
-        format: "json"
+      - name: achievements_data
+        label: Список досягнень
+        file: src/content/achievements/achievements.json
+        format: json
         fields:
-          - label: "Список"
-            name: "list"
-            widget: "list"
+          - label: Список
+            name: list
+            widget: list
             fields:
-              - { label: "Назва", name: "title", widget: "string" }
-              - { label: "Опис", name: "description", widget: "text" }
-              - { label: "Іконка", name: "icon", widget: "select", options: ["Award", "BookOpen", "BadgeCheck", "Globe", "GraduationCap", "Trophy", "Users"] }
+              - label: Назва
+                name: title
+                widget: string
+              - label: Опис
+                name: description
+                widget: text
+              - label: Іконка
+                name: icon
+                widget: select
+                options:
+                  - Award
+                  - BookOpen
+                  - BadgeCheck
+                  - Globe
+                  - GraduationCap
+                  - Trophy
+                  - Users
 
-  - name: "methods"
-    label: "Методична робота (дані)"
+  - name: methods
+    label: Методична робота
     delete: false
     editor:
       preview: false
     files:
-      - name: "methods_list"
-        label: "Список методів"
-        file: "src/content/methods/methods.json"
-        format: "json"
+      - name: methods_data
+        label: Список методів
+        file: src/content/methods/methods.json
+        format: json
         fields:
-          - label: "Список"
-            name: "list"
-            widget: "list"
+          - label: Список
+            name: list
+            widget: list
             fields:
-              - { label: "Тема", name: "title", widget: "string" }
-              - { label: "Опис", name: "description", widget: "text" }
-              - { label: "Посилання", name: "link", widget: "string", required: false }
+              - label: Тема
+                name: title
+                widget: string
+              - label: Опис
+                name: description
+                widget: text
+              - label: Посилання
+                name: link
+                widget: string
+                required: false
