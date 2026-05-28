@@ -1,6 +1,6 @@
 backend:
   name: git-gateway
-  branch: main
+  branch: master
 
 local_backend: true
 
@@ -56,6 +56,9 @@ collections:
     fields:
       - { label: "Email", name: "email", widget: "string" }
       - { label: "Телефон", name: "phone", widget: "string", required: false }
-      - { label: "Посилання", name: "links", widget: "list", fields:
-        - { label: "Платформа", name: "platform", widget: "string" }
-        - { label: "URL", name: "url", widget: "string" } }
+      - label: "Посилання"
+        name: "links"
+        widget: "list"
+        fields:
+          - { label: "Платформа", name: "platform", widget: "string" }
+          - { label: "URL", name: "url", widget: "string" }
