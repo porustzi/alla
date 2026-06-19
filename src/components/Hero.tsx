@@ -34,7 +34,7 @@ export default function Hero() {
               className="inline-flex items-center gap-2 px-6 py-3 bg-uk-navy text-white rounded-lg hover:bg-uk-navy/90 transition-colors font-medium"
             >
               {primaryButton}
-              <ArrowDown size={18} />
+              <ArrowDown size={18} aria-hidden={true} />
             </a>
             <a
               href="#contact"

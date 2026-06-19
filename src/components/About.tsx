@@ -40,7 +40,7 @@ export default function About() {
                   className="flex gap-4 p-6 bg-white rounded-xl shadow-sm border border-uk-sky/10"
                 >
                   <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-uk-navy/5 flex items-center justify-center">
-                    <IconComponent size={24} className="text-uk-red" />
+                    <IconComponent size={24} className="text-uk-red" aria-hidden={true} />
                   </div>
                   <div>
                     <h3 className="font-semibold text-uk-navy mb-1">{item.label}</h3>
@@ -65,7 +65,7 @@ export default function About() {
                   className="p-6 bg-white rounded-xl shadow-sm border border-uk-sky/10 hover:shadow-md hover:-translate-y-1 transition-all"
                 >
                   <div className="w-10 h-10 rounded-lg bg-uk-red/5 flex items-center justify-center mb-4">
-                    <IconComponent size={22} className="text-uk-red" />
+                    <IconComponent size={22} className="text-uk-red" aria-hidden={true} />
                   </div>
                   <h4 className="font-semibold text-uk-navy mb-2">{item.title}</h4>
                   <p className="text-uk-steel text-sm leading-relaxed">{item.description}</p>

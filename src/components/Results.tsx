@@ -36,7 +36,7 @@ export default function Results() {
                 >
                   <div className="flex items-start gap-4">
                     <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-uk-navy/5 flex items-center justify-center">
-                      <IconComponent size={24} className="text-uk-red" />
+                      <IconComponent size={24} className="text-uk-red" aria-hidden={true} />
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-3 mb-2">

@@ -28,7 +28,7 @@ export default function Contact() {
               className="flex items-center gap-4 p-4 bg-white rounded-xl border border-uk-sky/10 hover:shadow-sm transition-all group"
             >
               <div className="w-12 h-12 rounded-lg bg-uk-navy/5 flex items-center justify-center group-hover:bg-uk-red/5 transition-colors">
-                <Mail size={22} className="text-uk-red" />
+                <Mail size={22} className="text-uk-red" aria-hidden={true} />
               </div>
               <div>
                 <p className="text-xs text-uk-steel/60 uppercase tracking-wider font-medium">{emailLabel}</p>
@@ -46,7 +46,7 @@ export default function Contact() {
                 className="flex items-center gap-4 p-4 bg-white rounded-xl border border-uk-sky/10 hover:shadow-sm transition-all group"
               >
                 <div className="w-12 h-12 rounded-lg bg-uk-navy/5 flex items-center justify-center group-hover:bg-uk-red/5 transition-colors">
-                  <Phone size={22} className="text-uk-red" />
+                  <Phone size={22} className="text-uk-red" aria-hidden={true} />
                 </div>
                 <div>
                   <p className="text-xs text-uk-steel/60 uppercase tracking-wider font-medium">{phoneLabel}</p>
@@ -68,13 +68,13 @@ export default function Contact() {
                 className="flex items-center gap-4 p-4 bg-white rounded-xl border border-uk-sky/10 hover:shadow-sm transition-all group"
               >
                 <div className="w-12 h-12 rounded-lg bg-uk-navy/5 flex items-center justify-center group-hover:bg-uk-red/5 transition-colors">
-                  <ExternalLink size={22} className="text-uk-red" />
+                  <ExternalLink size={22} className="text-uk-red" aria-hidden={true} />
                 </div>
                 <div className="flex-1">
                   <p className="text-xs text-uk-steel/60 uppercase tracking-wider font-medium">{profileLabel}</p>
                   <p className="text-uk-navy font-medium">{link.platform}</p>
                 </div>
-                <ExternalLink size={16} className="text-uk-steel/40 group-hover:text-uk-red transition-colors" />
+                <ExternalLink size={16} className="text-uk-steel/40 group-hover:text-uk-red transition-colors" aria-hidden={true} />
               </motion.a>
             ))}
           </div>

@@ -29,7 +29,7 @@ export default function Navbar() {
             onClick={() => setOpen(!open)}
             aria-label={menuLabel}
           >
-            {open ? <X size={24} /> : <Menu size={24} />}
+            {open ? <X size={24} aria-hidden={true} /> : <Menu size={24} aria-hidden={true} />}
           </button>
         </div>
       </div>

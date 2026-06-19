@@ -29,7 +29,7 @@ export default function Methods() {
                 className="p-6 bg-white rounded-xl shadow-sm border border-uk-sky/10 hover:shadow-md transition-all flex flex-col"
               >
                 <div className="w-10 h-10 rounded-lg bg-uk-red/5 flex items-center justify-center mb-4">
-                  <BookOpen size={22} className="text-uk-red" />
+                  <BookOpen size={22} className="text-uk-red" aria-hidden={true} />
                 </div>
                 <h3 className="font-semibold text-uk-navy mb-2">{item.title}</h3>
                 <p className="text-uk-steel text-sm leading-relaxed flex-1">{item.description}</p>
@@ -40,7 +40,7 @@ export default function Methods() {
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1 text-sm text-uk-red font-medium mt-4 hover:underline"
                   >
-                    <ExternalLink size={14} />
+                    <ExternalLink size={14} aria-hidden={true} />
                     {readMore}
                   </a>
                 )}
