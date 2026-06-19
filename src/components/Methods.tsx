@@ -1,10 +1,10 @@
 import { motion } from 'framer-motion';
 import { BookOpen, ExternalLink } from 'lucide-react';
-import methodsData from '../content/methods/methods.json';
-import methods from '../content/sections/methods.json';
+import site from '../content/site.json';
 
 export default function Methods() {
-  const { title, readMore } = methods;
+  const { title, readMore } = site.methodsSection;
+  const methodsData = site.methods;
 
   return (
     <section id="methods" className="py-24 bg-uk-light/50">

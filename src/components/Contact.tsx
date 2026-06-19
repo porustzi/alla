@@ -1,10 +1,10 @@
 import { motion } from 'framer-motion';
 import { Mail, Phone, ExternalLink } from 'lucide-react';
-import contact from '../content/contact/contact.json';
-import contactSection from '../content/sections/contact.json';
+import site from '../content/site.json';
 
 export default function Contact() {
-  const { title, emailLabel, phoneLabel, profileLabel } = contactSection;
+  const { title, emailLabel, phoneLabel, profileLabel } = site.contactSection;
+  const contact = site.contact;
 
   return (
     <section id="contact" className="py-24">

@@ -1,10 +1,10 @@
 import { motion } from 'framer-motion';
 import { ArrowDown } from 'lucide-react';
-import profile from '../content/about/profile.json';
-import hero from '../content/sections/hero.json';
+import site from '../content/site.json';
 
 export default function Hero() {
-  const { badge, primaryButton, secondaryButton } = hero;
+  const { badge, primaryButton, secondaryButton } = site.hero;
+  const profile = site.profile;
 
   return (
     <section id="hero" className="min-h-screen flex items-center justify-center relative overflow-hidden">

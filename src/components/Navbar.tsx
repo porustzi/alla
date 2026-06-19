@@ -1,10 +1,10 @@
 import { Menu, X } from 'lucide-react';
 import { useState } from 'react';
-import navbar from '../content/sections/navbar.json';
+import site from '../content/site.json';
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
-  const { logo, links, menuLabel } = navbar;
+  const { logo, links, menuLabel } = site.navbar;
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-uk-sky/20">
