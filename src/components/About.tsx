@@ -3,7 +3,7 @@ import { Award } from 'lucide-react';
 import site from '../content/site.json';
 import { iconMap } from '../content/iconMap';
 
-const profile = site.profile;
+const profile = site.profileData;
 const fieldMap: Record<string, string> = {
   education: profile.education,
   experience: profile.experience,
@@ -12,8 +12,8 @@ const fieldMap: Record<string, string> = {
 };
 
 export default function About() {
-  const { title, details, achievementsTitle } = site.about;
-  const achievements = site.achievements;
+  const { title, details, achievementsTitle } = site.aboutSection;
+  const achievements = site.achievementsList;
 
   return (
     <section id="about" className="py-24 bg-uk-light/50">

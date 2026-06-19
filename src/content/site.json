@@ -1,21 +1,10 @@
 {
-  "navbar": {
-    "logo": "Portfolio",
-    "links": [
-      { "id": "hero", "label": "Головна" },
-      { "id": "about", "label": "Про мене" },
-      { "id": "results", "label": "Результати" },
-      { "id": "methods", "label": "Методична робота" },
-      { "id": "contact", "label": "Контакти" }
-    ],
-    "menuLabel": "Меню"
-  },
-  "hero": {
+  "heroSection": {
     "badge": "Teacher Portfolio",
     "primaryButton": "Дізнатись більше",
     "secondaryButton": "Контакти"
   },
-  "profile": {
+  "profileData": {
     "name": "Оксана Петрівна Коваленко",
     "title": "Вчитель англійської мови, Ліцей №3",
     "credo": "Навчати — значить відкривати двері. Моє завдання — допомогти учням побачити світ через англійську мову.",
@@ -24,7 +13,7 @@
     "language_level": "C1 (CAE)",
     "category": "Вища"
   },
-  "about": {
+  "aboutSection": {
     "title": "Про мене",
     "details": [
       { "label": "Освіта", "icon": "GraduationCap", "field": "education" },
@@ -34,7 +23,7 @@
     ],
     "achievementsTitle": "Досягнення"
   },
-  "achievements": {
+  "achievementsList": {
     "list": [
       {
         "title": "Сертифікат CAE (C1)",
@@ -69,7 +58,7 @@
     ],
     "fallbackCategory": "bg-gray-50 text-gray-600"
   },
-  "results": {
+  "resultsList": {
     "list": [
       {
         "title": "Рівень знань учнів",
@@ -101,7 +90,7 @@
     "title": "Методична робота",
     "readMore": "Читати статтю"
   },
-  "methods": {
+  "methodsList": {
     "list": [
       {
         "title": "Використання ігрових методів на уроці англійської мови",
@@ -126,7 +115,7 @@
     "phoneLabel": "Телефон",
     "profileLabel": "Профіль"
   },
-  "contact": {
+  "contactInfo": {
     "email": "o.kovalenko@email.com",
     "phone": "+380 XX XXX XXXX",
     "links": [
@@ -134,9 +123,5 @@
       { "platform": "На Урок", "url": "https://naurok.com.ua" },
       { "platform": "Facebook", "url": "https://facebook.com" }
     ]
-  },
-  "footer": {
-    "logo": "Portfolio",
-    "rights": "Всі права захищено"
   }
 }

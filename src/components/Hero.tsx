@@ -3,8 +3,8 @@ import { ArrowDown } from 'lucide-react';
 import site from '../content/site.json';
 
 export default function Hero() {
-  const { badge, primaryButton, secondaryButton } = site.hero;
-  const profile = site.profile;
+  const { badge, primaryButton, secondaryButton } = site.heroSection;
+  const profile = site.profileData;
 
   return (
     <section id="hero" className="min-h-screen flex items-center justify-center relative overflow-hidden">

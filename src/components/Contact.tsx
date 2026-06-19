@@ -4,7 +4,7 @@ import site from '../content/site.json';
 
 export default function Contact() {
   const { title, emailLabel, phoneLabel, profileLabel } = site.contactSection;
-  const contact = site.contact;
+  const contact = site.contactInfo;
 
   return (
     <section id="contact" className="py-24">

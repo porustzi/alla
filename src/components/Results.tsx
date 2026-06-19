@@ -5,7 +5,7 @@ import { iconMap } from '../content/iconMap';
 
 export default function Results() {
   const { title, description, categories, fallbackCategory } = site.resultsSection;
-  const resultsData = site.results;
+  const resultsData = site.resultsList;
 
   return (
     <section id="results" className="py-24">

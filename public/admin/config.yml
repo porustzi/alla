@@ -17,59 +17,32 @@ collections:
         file: src/content/site.json
         format: json
         fields:
-          - label: '═══ 1. НАВІГАЦІЯ (шапка) ═══'
-            name: _separator_navbar
-            widget: string
-            required: false
-
-          - label: Логотип
-            name: navbar
-            widget: object
-            fields:
-              - label: Текст логотипу
-                name: logo
-                widget: string
-              - label: Посилання в меню
-                name: links
-                widget: list
-                summary: '{{fields.label}}'
-                fields:
-                  - label: ID (якір)
-                    name: id
-                    widget: string
-                  - label: Текст
-                    name: label
-                    widget: string
-              - label: Підпис кнопки меню
-                name: menuLabel
-                widget: string
-
-          - label: '═══ 2. ГОЛОВНА (HERO) ═══'
-            name: _separator_hero
+          - label: '══════════ 1. ГОЛОВНИЙ ЕКРАН ══════════'
+            name: _sep_hero
             widget: string
             required: false
 
           - label: Головний екран
-            name: hero
+            name: heroSection
             widget: object
             fields:
               - label: Бейдж
                 name: badge
                 widget: string
-              - label: Кнопка 1
+              - label: Кнопка 1 (текст)
                 name: primaryButton
                 widget: string
-              - label: Кнопка 2
+              - label: Кнопка 2 (текст)
                 name: secondaryButton
                 widget: string
 
-          - label: '═══ 3. ПРОФІЛЬ ═══'
-            name: _separator_profile
+          - label: '══════════ 2. ПРОФІЛЬ ══════════'
+            name: _sep_profile
             widget: string
             required: false
 
           - label: Персональні дані
-            name: profile
+            name: profileData
             widget: object
             fields:
               - label: Ім'я
@@ -94,19 +67,19 @@ collections:
                 name: category
                 widget: string
 
-          - label: '═══ 4. ПРО МЕНЕ + ДОСЯГНЕННЯ ═══'
-            name: _separator_about
+          - label: '══════════ 3. ПРО МЕНЕ ══════════'
+            name: _sep_about
             widget: string
             required: false
 
           - label: Секція "Про мене"
-            name: about
+            name: aboutSection
             widget: object
             fields:
-              - label: Заголовок
+              - label: Заголовок секції
                 name: title
                 widget: string
-              - label: Деталі
+              - label: Картки з деталями
                 name: details
                 widget: list
                 summary: '{{fields.label}}'
@@ -130,12 +103,12 @@ collections:
                   - label: Поле профілю
                     name: field
                     widget: string
-              - label: Заголовок досягнень
+              - label: Заголовок блоку досягнень
                 name: achievementsTitle
                 widget: string
 
           - label: Список досягнень
-            name: achievements
+            name: achievementsList
             widget: object
             fields:
               - label: Досягнення
@@ -163,16 +136,16 @@ collections:
                       - Trophy
                       - Users
 
-          - label: '═══ 5. РЕЗУЛЬТАТИ ═══'
-            name: _separator_results
+          - label: '══════════ 4. РЕЗУЛЬТАТИ ══════════'
+            name: _sep_results
             widget: string
             required: false
 
-          - label: Секція "Результати"
+          - label: Налаштування секції "Результати"
             name: resultsSection
             widget: object
             fields:
-              - label: Заголовок
+              - label: Заголовок секції
                 name: title
                 widget: string
               - label: Опис
@@ -206,11 +179,11 @@ collections:
                 name: fallbackCategory
                 widget: string
 
-          - label: Список результатів
-            name: results
+          - label: Список результатів учнів
+            name: resultsList
             widget: object
             fields:
-              - label: Результати учнів
+              - label: Результати
                 name: list
                 widget: list
                 summary: '{{fields.title}}'
@@ -234,27 +207,27 @@ collections:
                     widget: number
                     value_type: int
 
-          - label: '═══ 6. МЕТОДИЧНА РОБОТА ═══'
-            name: _separator_methods
+          - label: '══════════ 5. МЕТОДИЧНА РОБОТА ══════════'
+            name: _sep_methods
             widget: string
             required: false
 
-          - label: Секція "Методична робота"
+          - label: Налаштування секції "Методична робота"
             name: methodsSection
             widget: object
             fields:
-              - label: Заголовок
+              - label: Заголовок секції
                 name: title
                 widget: string
-              - label: Читати далі
+              - label: Текст кнопки "читати далі"
                 name: readMore
                 widget: string
 
-          - label: Список методів
-            name: methods
+          - label: Список методичних матеріалів
+            name: methodsList
             widget: object
             fields:
-              - label: Методичні матеріали
+              - label: Матеріали
                 name: list
                 widget: list
                 summary: '{{fields.title}}'
@@ -270,30 +243,30 @@ collections:
                     widget: string
                     required: false
 
-          - label: '═══ 7. КОНТАКТИ ═══'
-            name: _separator_contact
+          - label: '══════════ 6. КОНТАКТИ ══════════'
+            name: _sep_contact
             widget: string
             required: false
 
-          - label: Секція "Контакти"
+          - label: Налаштування секції "Контакти"
             name: contactSection
             widget: object
             fields:
-              - label: Заголовок
+              - label: Заголовок секції
                 name: title
                 widget: string
-              - label: Email підпис
+              - label: Підпис для Email
                 name: emailLabel
                 widget: string
-              - label: Телефон підпис
+              - label: Підпис для телефону
                 name: phoneLabel
                 widget: string
-              - label: Профіль підпис
+              - label: Підпис для профілю
                 name: profileLabel
                 widget: string
 
-          - label: Контактна інформація
-            name: contact
+          - label: Контактні дані
+            name: contactInfo
             widget: object
             fields:
               - label: Email
@@ -314,19 +287,3 @@ collections:
                   - label: URL
                     name: url
                     widget: string
-
-          - label: '═══ 8. ФУТЕР (підвал) ═══'
-            name: _separator_footer
-            widget: string
-            required: false
-
-          - label: Футер
-            name: footer
-            widget: object
-            fields:
-              - label: Логотип
-                name: logo
-                widget: string
-              - label: Права
-                name: rights
-                widget: string

@@ -4,7 +4,7 @@ import site from '../content/site.json';
 
 export default function Methods() {
   const { title, readMore } = site.methodsSection;
-  const methodsData = site.methods;
+  const methodsData = site.methodsList;
 
   return (
     <section id="methods" className="py-24 bg-uk-light/50">
