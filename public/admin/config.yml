@@ -15,119 +15,128 @@ public_folder: /images
 collections:
   - name: general
     label: Загальні налаштування
-    file: content/pages/general.json
-    format: json
-    fields:
-      - label: Назва сайту
-        name: site_name
-        widget: string
-      - label: Навігація
-        name: navbar
-        widget: object
+    files:
+      - name: general_data
+        label: Загальні налаштування
+        file: content/pages/general.json
+        format: json
         fields:
-          - label: Логотип
-            name: logo
+          - label: Назва сайту
+            name: site_name
             widget: string
-          - label: Посилання меню
-            name: links
-            widget: list
-            summary: '{{fields.label}}'
+          - label: Навігація
+            name: navbar
+            widget: object
             fields:
-              - label: Якір (id)
-                name: id
+              - label: Логотип
+                name: logo
                 widget: string
-              - label: Назва
-                name: label
+              - label: Посилання меню
+                name: links
+                widget: list
+                summary: '{{fields.label}}'
+                fields:
+                  - label: Якір (id)
+                    name: id
+                    widget: string
+                  - label: Назва
+                    name: label
+                    widget: string
+              - label: Напис "Меню"
+                name: menuLabel
                 widget: string
-          - label: Напис "Меню"
-            name: menuLabel
-            widget: string
-      - label: Футер
-        name: footer
-        widget: object
-        fields:
-          - label: Логотип
-            name: logo
-            widget: string
-          - label: Текст прав
-            name: rights
-            widget: string
+          - label: Футер
+            name: footer
+            widget: object
+            fields:
+              - label: Логотип
+                name: logo
+                widget: string
+              - label: Текст прав
+                name: rights
+                widget: string
 
   - name: hero
     label: Головний екран
-    file: content/pages/hero.json
-    format: json
-    fields:
-      - label: Бейдж
-        name: badge
-        widget: string
-      - label: Кнопка 1
-        name: primaryButton
-        widget: string
-      - label: Кнопка 2
-        name: secondaryButton
-        widget: string
-      - label: Профіль вчителя
-        name: profile
-        widget: object
+    files:
+      - name: hero_data
+        label: Головний екран
+        file: content/pages/hero.json
+        format: json
         fields:
-          - label: Ім'я
-            name: name
+          - label: Бейдж
+            name: badge
             widget: string
-          - label: Посада
-            name: title
+          - label: Кнопка 1
+            name: primaryButton
             widget: string
-          - label: Кредо
-            name: credo
-            widget: text
-          - label: Освіта
-            name: education
-            widget: text
-          - label: Досвід
-            name: experience
+          - label: Кнопка 2
+            name: secondaryButton
             widget: string
-          - label: Рівень мови
-            name: language_level
-            widget: string
-          - label: Категорія
-            name: category
-            widget: string
+          - label: Профіль вчителя
+            name: profile
+            widget: object
+            fields:
+              - label: Ім'я
+                name: name
+                widget: string
+              - label: Посада
+                name: title
+                widget: string
+              - label: Кредо
+                name: credo
+                widget: text
+              - label: Освіта
+                name: education
+                widget: text
+              - label: Досвід
+                name: experience
+                widget: string
+              - label: Рівень мови
+                name: language_level
+                widget: string
+              - label: Категорія
+                name: category
+                widget: string
 
   - name: about
     label: Секція «Про мене»
-    file: content/pages/about.json
-    format: json
-    fields:
-      - label: Заголовок
-        name: title
-        widget: string
-      - label: Картки з деталями
-        name: details
-        widget: list
-        summary: '{{fields.label}}'
+    files:
+      - name: about_data
+        label: Секція «Про мене»
+        file: content/pages/about.json
+        format: json
         fields:
-          - label: Підпис
-            name: label
+          - label: Заголовок
+            name: title
             widget: string
-          - label: Іконка
-            name: icon
-            widget: select
-            options:
-              - Award
-              - BookOpen
-              - BadgeCheck
-              - Briefcase
-              - FlaskConical
-              - Globe
-              - GraduationCap
-              - Trophy
-              - Users
-          - label: Поле профілю
-            name: field
+          - label: Картки з деталями
+            name: details
+            widget: list
+            summary: '{{fields.label}}'
+            fields:
+              - label: Підпис
+                name: label
+                widget: string
+              - label: Іконка
+                name: icon
+                widget: select
+                options:
+                  - Award
+                  - BookOpen
+                  - BadgeCheck
+                  - Briefcase
+                  - FlaskConical
+                  - Globe
+                  - GraduationCap
+                  - Trophy
+                  - Users
+              - label: Поле профілю
+                name: field
+                widget: string
+          - label: Заголовок блоку досягнень
+            name: achievementsTitle
             widget: string
-      - label: Заголовок блоку досягнень
-        name: achievementsTitle
-        widget: string
 
   - name: achievements
     label: Досягнення
@@ -163,46 +172,11 @@ collections:
 
   - name: results
     label: Секція «Результати»
-    file: content/pages/results.json
-    format: json
-    fields:
-      - label: Заголовок
-        name: title
-        widget: string
-      - label: Опис
-        name: description
-        widget: text
-      - label: Категорії
-        name: categories
-        widget: list
-        summary: '{{fields.name}}'
-        fields:
-          - label: Назва
-            name: name
-            widget: string
-          - label: Іконка
-            name: icon
-            widget: select
-            options:
-              - Award
-              - BookOpen
-              - BadgeCheck
-              - Briefcase
-              - FlaskConical
-              - Globe
-              - GraduationCap
-              - Trophy
-              - Users
-          - label: CSS колір
-            name: color
-            widget: string
-      - label: Запасний колір
-        name: fallbackCategory
-        widget: string
-      - label: Результати
-        name: list
-        widget: list
-        summary: '{{fields.title}}'
+    files:
+      - name: results_data
+        label: Секція «Результати»
+        file: content/pages/results.json
+        format: json
         fields:
           - label: Заголовок
             name: title
@@ -210,78 +184,122 @@ collections:
           - label: Опис
             name: description
             widget: text
-          - label: Категорія
-            name: category
-            widget: select
-            options:
-              - Успішність
-              - Олімпіади
-              - Конкурси
-              - Проєкти
-          - label: Рік
-            name: year
-            widget: number
-            value_type: int
+          - label: Категорії
+            name: categories
+            widget: list
+            summary: '{{fields.name}}'
+            fields:
+              - label: Назва
+                name: name
+                widget: string
+              - label: Іконка
+                name: icon
+                widget: select
+                options:
+                  - Award
+                  - BookOpen
+                  - BadgeCheck
+                  - Briefcase
+                  - FlaskConical
+                  - Globe
+                  - GraduationCap
+                  - Trophy
+                  - Users
+              - label: CSS колір
+                name: color
+                widget: string
+          - label: Запасний колір
+            name: fallbackCategory
+            widget: string
+          - label: Результати
+            name: list
+            widget: list
+            summary: '{{fields.title}}'
+            fields:
+              - label: Заголовок
+                name: title
+                widget: string
+              - label: Опис
+                name: description
+                widget: text
+              - label: Категорія
+                name: category
+                widget: select
+                options:
+                  - Успішність
+                  - Олімпіади
+                  - Конкурси
+                  - Проєкти
+              - label: Рік
+                name: year
+                widget: number
+                value_type: int
 
   - name: methods
     label: Секція «Методична робота»
-    file: content/pages/methods.json
-    format: json
-    fields:
-      - label: Заголовок
-        name: title
-        widget: string
-      - label: Текст кнопки «читати далі»
-        name: readMore
-        widget: string
-      - label: Матеріали
-        name: list
-        widget: list
-        summary: '{{fields.title}}'
+    files:
+      - name: methods_data
+        label: Секція «Методична робота»
+        file: content/pages/methods.json
+        format: json
         fields:
-          - label: Тема
+          - label: Заголовок
             name: title
             widget: string
-          - label: Опис
-            name: description
-            widget: text
-          - label: Посилання
-            name: link
+          - label: Текст кнопки «читати далі»
+            name: readMore
             widget: string
-            required: false
+          - label: Матеріали
+            name: list
+            widget: list
+            summary: '{{fields.title}}'
+            fields:
+              - label: Тема
+                name: title
+                widget: string
+              - label: Опис
+                name: description
+                widget: text
+              - label: Посилання
+                name: link
+                widget: string
+                required: false
 
   - name: contact
     label: Секція «Контакти»
-    file: content/pages/contact.json
-    format: json
-    fields:
-      - label: Заголовок
-        name: title
-        widget: string
-      - label: Підпис Email
-        name: emailLabel
-        widget: string
-      - label: Підпис телефону
-        name: phoneLabel
-        widget: string
-      - label: Підпис профілю
-        name: profileLabel
-        widget: string
-      - label: Email
-        name: email
-        widget: string
-      - label: Телефон
-        name: phone
-        widget: string
-        required: false
-      - label: Посилання
-        name: links
-        widget: list
-        summary: '{{fields.platform}}'
+    files:
+      - name: contact_data
+        label: Секція «Контакти»
+        file: content/pages/contact.json
+        format: json
         fields:
-          - label: Платформа
-            name: platform
+          - label: Заголовок
+            name: title
             widget: string
-          - label: URL
-            name: url
+          - label: Підпис Email
+            name: emailLabel
             widget: string
+          - label: Підпис телефону
+            name: phoneLabel
+            widget: string
+          - label: Підпис профілю
+            name: profileLabel
+            widget: string
+          - label: Email
+            name: email
+            widget: string
+          - label: Телефон
+            name: phone
+            widget: string
+            required: false
+          - label: Посилання
+            name: links
+            widget: list
+            summary: '{{fields.platform}}'
+            fields:
+              - label: Платформа
+                name: platform
+                widget: string
+              - label: URL
+                name: url
+                widget: string
