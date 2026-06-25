@@ -102,10 +102,11 @@ export async function onRequest(context) {
     if (targetMethod === 'PUT') {
       const cfToken = env.CF_API_TOKEN;
       const cfAccount = env.CF_ACCOUNT_ID;
-      if (cfToken && cfAccount) {
+      const ghPat = env.GITHUB_PAT;
+      if (cfToken && cfAccount && ghPat) {
         context.waitUntil((async () => {
           try {
-            await fetch(`https://api.cloudflare.com/client/v4/accounts/${cfAccount}/pages/projects/alla/deployments`, {
+            await fetch(`https://api.cloudflare.com/client/v4/accounts/${cfAccount}/pages/projects/alla-v/deployments`, {
               method: 'POST',
               headers: { 'Authorization': `Bearer ${cfToken}`, 'Content-Type': 'application/json' },
               body: JSON.stringify({ branch: 'master' }),
