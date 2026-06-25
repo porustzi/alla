@@ -42,7 +42,8 @@ export async function onRequest(context) {
     });
   }
 
-  const gitPath = url.pathname.replace(/^\/api\/git\//, '');
+  let gitPath = url.pathname.replace(/^\/api\/git\//, '');
+  gitPath = gitPath.replace(/^github\//, '');
   const githubToken = env.GITHUB_PAT;
 
   if (!githubToken) {
@@ -102,7 +103,9 @@ export async function onRequest(context) {
         ghBody.branch = ghBody.branch;
       }
       if (ghBody.content && typeof ghBody.content === 'string') {
-        ghBody.content = btoa(unescape(encodeURIComponent(ghBody.content)));
+        const encoder = new TextEncoder();
+        const bytes = encoder.encode(ghBody.content);
+        ghBody.content = btoa(String.fromCharCode(...bytes));
       }
 
       body = JSON.stringify(ghBody);

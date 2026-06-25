@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Дашборд — Адмінка</title>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:Inter,system-ui,sans-serif;background:#f1f5f9;min-height:100vh}
+    header{background:#1D3557;color:#fff;padding:12px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+    header h1{font-size:16px;font-weight:600}
+    header button{background:#E63946;color:#fff;border:none;padding:7px 16px;border-radius:7px;font-size:13px;font-weight:600;cursor:pointer}
+    .grid{max-width:900px;margin:24px auto;padding:0 16px;display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px}
+    .card{background:#fff;border-radius:12px;padding:20px;box-shadow:0 2px 12px rgba(0,0,0,.04);cursor:pointer;transition:transform .15s,box-shadow .15s;border:1px solid #e2e8f0}
+    .card:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(0,0,0,.08)}
+    .card h2{font-size:15px;color:#1D3557;margin-bottom:4px}
+    .card p{font-size:12px;color:#94a3b8}
+    .card .icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:12px;font-size:18px}
+    .card .icon.red{background:#fef2f2;color:#E63946}
+    .card .icon.blue{background:#eff6ff;color:#3b82f6}
+    .card .icon.green{background:#f0fdf4;color:#22c55e}
+    .card .icon.amber{background:#fffbeb;color:#f59e0b}
+    .card .icon.purple{background:#faf5ff;color:#a855f7}
+    .card .icon.slate{background:#f8fafc;color:#64748b}
+    .card .icon.rose{background:#fff1f2;color:#e11d48}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Адмінка — Портфоліо</h1>
+    <button onclick="logout()">Вийти</button>
+  </header>
+  <div class="grid" id="grid"></div>
+  <script>
+    const token = localStorage.getItem('admin_token');
+    if (!token) { window.location.href = '/admin/'; }
+
+    function logout() { localStorage.removeItem('admin_token'); window.location.href = '/admin/'; }
+
+    const files = [
+      { name: 'hero', label: 'Головний екран', path: 'content/pages/hero.json', color: 'red', desc: 'Ім\'я, посада, кредо, кнопки' },
+      { name: 'about', label: 'Про мене', path: 'content/pages/about.json', color: 'blue', desc: 'Заголовок, деталі, іконки' },
+      { name: 'achievements', label: 'Досягнення', path: 'content/achievements/achievements.json', color: 'green', desc: 'Список досягнень' },
+      { name: 'results', label: 'Результати', path: 'content/pages/results.json', color: 'amber', desc: 'Категорії, результати учнів' },
+      { name: 'methods', label: 'Методична робота', path: 'content/pages/methods.json', color: 'purple', desc: 'Матеріали та публікації' },
+      { name: 'contact', label: 'Контакти', path: 'content/pages/contact.json', color: 'rose', desc: 'Email, телефон, посилання' },
+      { name: 'general', label: 'Загальне', path: 'content/pages/general.json', color: 'slate', desc: 'Навігація, футер' },
+    ];
+
+    document.getElementById('grid').innerHTML = files.map(f => `
+      <div class="card" onclick="location.href='/admin/editor.html?path=${encodeURIComponent(f.path)}&name=${encodeURIComponent(f.label)}'">
+        <div class="icon ${f.color}">${f.label[0]}</div>
+        <h2>${f.label}</h2>
+        <p>${f.desc}</p>
+      </div>
+    `).join('');
+  </script>
+</body>
+</html>

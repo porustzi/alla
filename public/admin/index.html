@@ -4,8 +4,62 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Адмінка — Портфоліо</title>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:Inter,system-ui,sans-serif;background:#f1f5f9;min-height:100vh;display:flex;align-items:center;justify-content:center}
+    .card{background:#fff;border-radius:16px;padding:40px;width:380px;max-width:90%;box-shadow:0 4px 32px rgba(0,0,0,.06)}
+    h1{font-size:22px;color:#1D3557;text-align:center;margin-bottom:6px}
+    p{color:#64748b;font-size:13px;text-align:center;margin-bottom:28px}
+    label{display:block;font-size:13px;font-weight:600;color:#1D3557;margin-bottom:6px}
+    input{width:100%;padding:12px 14px;border:1.5px solid #e2e8f0;border-radius:10px;font-size:15px;margin-bottom:16px;outline:none;transition:border-color .2s}
+    input:focus{border-color:#E63946}
+    button{width:100%;padding:13px;background:#1D3557;color:#fff;border:none;border-radius:10px;font-size:15px;font-weight:600;cursor:pointer;transition:background .2s}
+    button:hover{background:#152b47}
+    .error{color:#E63946;font-size:13px;text-align:center;margin-bottom:12px;display:none}
+    .error.show{display:block}
+  </style>
 </head>
 <body>
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <div class="card">
+    <h1>Адмінка</h1>
+    <p>Портфоліо вчителя</p>
+    <div class="error" id="error">Невірний логін або пароль</div>
+    <form id="form">
+      <label>Логін</label>
+      <input type="text" id="username" placeholder="portfolio" autocomplete="username" />
+      <label>Пароль</label>
+      <input type="password" id="password" placeholder="••••••••" autocomplete="current-password" />
+      <button type="submit">Увійти</button>
+    </form>
+  </div>
+  <script>
+    if (localStorage.getItem('admin_token')) {
+      window.location.href = '/admin/dashboard.html';
+    }
+    document.getElementById('form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      const err = document.getElementById('error');
+      err.classList.remove('show');
+      try {
+        const res = await fetch('/api/auth/token', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password }),
+        });
+        const data = await res.json();
+        if (res.ok && data.access_token) {
+          localStorage.setItem('admin_token', data.access_token);
+          window.location.href = '/admin/dashboard.html';
+        } else {
+          err.classList.add('show');
+        }
+      } catch {
+        err.textContent = 'Помилка з\'єднання';
+        err.classList.add('show');
+      }
+    });
+  </script>
 </body>
 </html>
