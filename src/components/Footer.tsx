@@ -54,8 +54,8 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="flex justify-center mb-6">
-          <div className="relative overflow-hidden rounded-full px-5 py-2.5 bg-white shadow-lg">
+        <div className="flex justify-center mt-6 mb-4 px-4">
+          <div className="relative overflow-hidden rounded-full md:rounded-full rounded-xl w-full md:w-auto max-w-xs md:max-w-none mx-auto px-5 py-3 md:py-2.5 bg-white shadow-lg">
             <div className="absolute inset-0 pointer-events-none">
               <div className="absolute -top-4 -right-3 w-16 h-16 bg-rose-300/50 rounded-full blur-xl" />
               <div className="absolute -bottom-4 -left-3 w-12 h-12 bg-rose-400/40 rounded-full blur-lg" />
@@ -65,9 +65,9 @@ export default function Footer() {
               href="https://krvtsv.netlify.app"
               target="_blank"
               rel="noopener noreferrer"
-              className="relative block text-center text-rose-600 font-bold text-[10px] uppercase tracking-widest whitespace-nowrap hover:text-rose-500 hover:scale-105 transition-all duration-200"
+              className="relative block text-center text-rose-600 font-bold text-[11px] md:text-[10px] uppercase tracking-widest whitespace-nowrap hover:text-rose-500 hover:scale-105 transition-all duration-200"
             >
-              krvtsv corp
+              KRVTSV CORP
             </a>
           </div>
         </div>
