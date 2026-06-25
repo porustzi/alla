@@ -1,8 +1,8 @@
 backend:
-  name: github
-  repo: porustzi/alla
+  name: git-gateway
   branch: master
-  auth_endpoint: /api/auth
+  identity_url: /api/auth
+  gateway_url: /api/git
 
 publish_mode: editorial_workflow
 site_url: https://alla-ahb.pages.dev
