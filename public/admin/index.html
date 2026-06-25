@@ -6,47 +6,53 @@
   <title>Адмінка — Портфоліо</title>
   <style>
     *{margin:0;padding:0;box-sizing:border-box}
-    body{font-family:Inter,system-ui,sans-serif;background:#f1f5f9;min-height:100vh;display:flex;align-items:center;justify-content:center}
-    .card{background:#fff;border-radius:16px;padding:40px;width:380px;max-width:90%;box-shadow:0 4px 32px rgba(0,0,0,.06)}
-    h1{font-size:22px;color:#1D3557;text-align:center;margin-bottom:6px}
-    p{color:#64748b;font-size:13px;text-align:center;margin-bottom:28px}
-    label{display:block;font-size:13px;font-weight:600;color:#1D3557;margin-bottom:6px}
-    input{width:100%;padding:12px 14px;border:1.5px solid #e2e8f0;border-radius:10px;font-size:15px;margin-bottom:16px;outline:none;transition:border-color .2s}
+    body{font-family:Inter,system-ui,sans-serif;background:#0f172a;min-height:100vh;display:flex;align-items:center;justify-content:center}
+    .bg{position:fixed;inset:0;overflow:hidden}
+    .bg::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle at 30% 50%,#1D3557 0%,transparent 50%),radial-gradient(circle at 70% 30%,#E63946 0%,transparent 40%),radial-gradient(circle at 50% 80%,#457B9D 0%,transparent 40%)}
+    .card{position:relative;background:rgba(255,255,255,.06);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:44px 36px;width:400px;max-width:90%;text-align:center}
+    .logo{width:48px;height:48px;background:#E63946;border-radius:12px;display:inline-flex;align-items:center;justify-content:center;font-size:22px;font-weight:800;color:#fff;margin-bottom:16px}
+    h1{font-size:20px;color:#f1f5f9;margin-bottom:4px}
+    .sub{color:#94a3b8;font-size:13px;margin-bottom:28px}
+    label{display:block;font-size:12px;font-weight:600;color:#cbd5e1;text-align:left;margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px}
+    input{width:100%;padding:12px 14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:10px;font-size:15px;color:#f1f5f9;outline:none;margin-bottom:14px;transition:border-color .2s;font-family:inherit}
+    input::placeholder{color:#475569}
     input:focus{border-color:#E63946}
-    button{width:100%;padding:13px;background:#1D3557;color:#fff;border:none;border-radius:10px;font-size:15px;font-weight:600;cursor:pointer;transition:background .2s}
-    button:hover{background:#152b47}
-    .error{color:#E63946;font-size:13px;text-align:center;margin-bottom:12px;display:none}
+    button{width:100%;padding:13px;background:#E63946;color:#fff;border:none;border-radius:10px;font-size:15px;font-weight:600;cursor:pointer;transition:all .2s;margin-top:4px}
+    button:hover{background:#c1121f;transform:translateY(-1px)}
+    .error{color:#fca5a5;font-size:13px;margin-top:10px;display:none}
     .error.show{display:block}
+    .preview-link{color:#64748b;font-size:12px;margin-top:20px;display:block;text-decoration:none}
+    .preview-link:hover{color:#94a3b8}
   </style>
 </head>
 <body>
+  <div class="bg"></div>
   <div class="card">
+    <div class="logo">P</div>
     <h1>Адмінка</h1>
-    <p>Портфоліо вчителя</p>
+    <p class="sub">Керування контентом портфоліо</p>
     <div class="error" id="error">Невірний логін або пароль</div>
     <form id="form">
       <label>Логін</label>
-      <input type="text" id="username" placeholder="portfolio" autocomplete="username" />
+      <input type="text" id="username" autocomplete="username" />
       <label>Пароль</label>
-      <input type="password" id="password" placeholder="••••••••" autocomplete="current-password" />
+      <input type="password" id="password" autocomplete="current-password" />
       <button type="submit">Увійти</button>
     </form>
+    <a href="/" class="preview-link" target="_blank">Переглянути сайт →</a>
   </div>
   <script>
-    if (localStorage.getItem('admin_token')) {
-      window.location.href = '/admin/dashboard.html';
-    }
+    if (localStorage.getItem('admin_token')) window.location.href = '/admin/dashboard.html';
     document.getElementById('form').addEventListener('submit', async (e) => {
       e.preventDefault();
-      const username = document.getElementById('username').value;
-      const password = document.getElementById('password').value;
+      const u = document.getElementById('username').value;
+      const p = document.getElementById('password').value;
       const err = document.getElementById('error');
       err.classList.remove('show');
       try {
         const res = await fetch('/api/auth/token', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ username, password }),
+          method:'POST', headers:{'Content-Type':'application/json'},
+          body: JSON.stringify({username:u,password:p}),
         });
         const data = await res.json();
         if (res.ok && data.access_token) {
@@ -55,10 +61,7 @@
         } else {
           err.classList.add('show');
         }
-      } catch {
-        err.textContent = 'Помилка з\'єднання';
-        err.classList.add('show');
-      }
+      } catch { err.textContent = 'Помилка з\'єднання'; err.classList.add('show'); }
     });
   </script>
 </body>
