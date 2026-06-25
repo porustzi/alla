@@ -1,0 +1,18 @@
+{
+  "site_name": "Портфоліо — вчитель англійської мови",
+  "navbar": {
+    "logo": "Portfolio",
+    "links": [
+      { "id": "hero", "label": "Головна" },
+      { "id": "about", "label": "Про мене" },
+      { "id": "results", "label": "Результати" },
+      { "id": "methods", "label": "Методична робота" },
+      { "id": "contact", "label": "Контакти" }
+    ],
+    "menuLabel": "Меню"
+  },
+  "footer": {
+    "logo": "Portfolio",
+    "rights": "Всі права захищено"
+  }
+}

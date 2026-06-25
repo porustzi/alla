@@ -1,10 +1,9 @@
 import { motion } from 'framer-motion';
 import { Mail, Phone, ExternalLink } from 'lucide-react';
-import site from '../content/site.json';
+import contact from '../../content/pages/contact.json';
 
 export default function Contact() {
-  const { title, emailLabel, phoneLabel, profileLabel } = site.contactSection;
-  const contact = site.contactInfo;
+  const { title, emailLabel, phoneLabel, profileLabel, email, phone, links } = contact;
 
   return (
     <section id="contact" className="py-24">
@@ -20,7 +19,7 @@ export default function Contact() {
 
           <div className="max-w-xl mx-auto space-y-6">
             <motion.a
-              href={`mailto:${contact.email}`}
+              href={`mailto:${email}`}
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -32,13 +31,13 @@ export default function Contact() {
               </div>
               <div>
                 <p className="text-xs text-uk-steel/60 uppercase tracking-wider font-medium">{emailLabel}</p>
-                <p className="text-uk-navy font-medium">{contact.email}</p>
+                <p className="text-uk-navy font-medium">{email}</p>
               </div>
             </motion.a>
 
-            {contact.phone && (
+            {phone && (
               <motion.a
-                href={`tel:${contact.phone}`}
+                href={`tel:${phone}`}
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
@@ -50,12 +49,12 @@ export default function Contact() {
                 </div>
                 <div>
                   <p className="text-xs text-uk-steel/60 uppercase tracking-wider font-medium">{phoneLabel}</p>
-                  <p className="text-uk-navy font-medium">{contact.phone}</p>
+                  <p className="text-uk-navy font-medium">{phone}</p>
                 </div>
               </motion.a>
             )}
 
-            {contact.links.map((link, idx) => (
+            {links.map((link, idx) => (
               <motion.a
                 key={link.platform}
                 href={link.url}

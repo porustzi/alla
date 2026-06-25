@@ -1,10 +1,9 @@
 import { motion } from 'framer-motion';
 import { BookOpen, ExternalLink } from 'lucide-react';
-import site from '../content/site.json';
+import methods from '../../content/pages/methods.json';
 
 export default function Methods() {
-  const { title, readMore } = site.methodsSection;
-  const methodsData = site.methodsList;
+  const { title, readMore, list } = methods;
 
   return (
     <section id="methods" className="py-24 bg-uk-light/50">
@@ -19,7 +18,7 @@ export default function Methods() {
           <div className="w-16 h-1 bg-uk-red rounded-full mb-12" />
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {methodsData.list.map((item, idx) => (
+            {list.map((item, idx) => (
               <motion.div
                 key={item.title}
                 initial={{ opacity: 0, y: 20 }}

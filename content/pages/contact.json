@@ -1,4 +1,8 @@
 {
+  "title": "Контакти",
+  "emailLabel": "Email",
+  "phoneLabel": "Телефон",
+  "profileLabel": "Профіль",
   "email": "o.kovalenko@email.com",
   "phone": "+380 XX XXX XXXX",
   "links": [

@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Публікація — Портфоліо</title>
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', system-ui, sans-serif; background: #0f172a; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+    .card { background: #1e293b; border-radius: 16px; padding: 40px; max-width: 480px; width: 90%; text-align: center; box-shadow: 0 25px 50px rgba(0,0,0,0.4); border: 1px solid #334155; }
+    .logo { display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 24px; }
+    .logo-icon { width: 40px; height: 40px; background: #E63946; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; color: white; font-weight: bold; }
+    .logo-text { color: #f1f5f9; font-size: 18px; font-weight: 700; }
+    h2 { color: #f1f5f9; font-size: 22px; margin-bottom: 8px; }
+    p { color: #94a3b8; font-size: 14px; line-height: 1.6; margin-bottom: 24px; }
+    .btn { display: inline-block; padding: 14px 32px; background: #E63946; color: white; border: none; border-radius: 10px; font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+    .btn:hover { background: #c1121f; transform: translateY(-1px); box-shadow: 0 8px 25px rgba(230,57,70,0.3); }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; box-shadow: none; }
+    .status { margin-top: 16px; padding: 12px; border-radius: 8px; font-size: 13px; display: none; }
+    .status.success { display: block; background: #064e3b; color: #6ee7b7; border: 1px solid #065f46; }
+    .status.error { display: block; background: #450a0a; color: #fca5a5; border: 1px solid #7f1d1d; }
+    .status.info { display: block; background: #172554; color: #93c5fd; border: 1px solid #1e3a5f; }
+    ol { text-align: left; color: #94a3b8; font-size: 13px; line-height: 1.8; padding-left: 20px; margin: 20px 0; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="logo">
+      <div class="logo-icon">P</div>
+      <span class="logo-text">Портфоліо</span>
+    </div>
+    <h2>Опублікувати зміни</h2>
+    <p>Після редагування контенту в адмінці Decap CMS — натисніть кнопку нижче, щоб опублікувати всі зміни на сайті.</p>
+    <button class="btn" id="publishBtn" onclick="publish()">Опублікувати все</button>
+    <div class="status info" id="status">
+      Завантаження...
+    </div>
+    <ol>
+      <li>Редагуєте в <a href="/admin/" style="color:#93c5fd;">адмінці Decap CMS</a></li>
+      <li>Зміни зберігаються як editorial workflow drafts</li>
+      <li>Натискаєте «Опублікувати все» — злиття гілок</li>
+      <li>Cloudflare Pages автоматично деплоїть оновлений сайт</li>
+    </ol>
+  </div>
+  <script>
+    const statusEl = document.getElementById('status');
+    const btnEl = document.getElementById('publishBtn');
+
+    function showStatus(msg, type) {
+      statusEl.textContent = msg;
+      statusEl.className = 'status ' + type;
+      statusEl.style.display = 'block';
+    }
+
+    async function checkAuth() {
+      const cms = window.CMS;
+      if (!cms) {
+        showStatus('CMS не завантажено. Спробуйте оновити сторінку.', 'error');
+        btnEl.disabled = true;
+        return false;
+      }
+      const user = cms.getUser ? await cms.getUser() : undefined;
+      if (!user) {
+        showStatus('Увійдіть через адмінку: /admin/', 'info');
+        btnEl.disabled = true;
+        return false;
+      }
+      return true;
+    }
+
+    async function publish() {
+      btnEl.disabled = true;
+      btnEl.textContent = 'Публікація...';
+      showStatus('Виконується публікація...', 'info');
+
+      const auth = await checkAuth();
+      if (!auth) { btnEl.disabled = false; btnEl.textContent = 'Опублікувати все'; return; }
+
+      try {
+        const cms = window.CMS;
+        const backend = cms.getBackend ? cms.getBackend() : undefined;
+        if (backend && backend.publish) {
+          await backend.publish();
+          showStatus('Зміни успішно опубліковано! Cloudflare Pages розпочне деплой.', 'success');
+        } else {
+          showStatus('Функція публікації недоступна. Переконайтесь, що ви в адмінці натиснули "Publish".', 'info');
+        }
+      } catch (e) {
+        showStatus('Помилка: ' + (e.message || 'Невідома помилка'), 'error');
+      }
+      btnEl.disabled = false;
+      btnEl.textContent = 'Опублікувати все';
+    }
+
+    window.addEventListener('load', async () => {
+      await checkAuth();
+    });
+  </script>
+</body>
+</html>

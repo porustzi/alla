@@ -1,9 +1,11 @@
 import { motion } from 'framer-motion';
 import { Award } from 'lucide-react';
-import site from '../content/site.json';
+import hero from '../../content/pages/hero.json';
+import aboutSection from '../../content/pages/about.json';
+import achievementsList from '../../content/achievements/achievements.json';
 import { iconMap } from '../content/iconMap';
 
-const profile = site.profileData;
+const profile = hero.profile;
 const fieldMap: Record<string, string> = {
   education: profile.education,
   experience: profile.experience,
@@ -12,8 +14,8 @@ const fieldMap: Record<string, string> = {
 };
 
 export default function About() {
-  const { title, details, achievementsTitle } = site.aboutSection;
-  const achievements = site.achievementsList;
+  const { title, details, achievementsTitle } = aboutSection;
+  const achievements = achievementsList;
 
   return (
     <section id="about" className="py-24 bg-uk-light/50">

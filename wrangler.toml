@@ -1,0 +1,9 @@
+name = "alla-portfolio"
+pages_build_output_dir = "dist"
+compatibility_date = "2025-06-25"
+
+[build]
+command = "npm run build"
+
+[env.production]
+compatibility_date = "2025-06-25"

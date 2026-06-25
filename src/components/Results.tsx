@@ -1,11 +1,10 @@
 import { motion } from 'framer-motion';
 import { Trophy } from 'lucide-react';
-import site from '../content/site.json';
+import results from '../../content/pages/results.json';
 import { iconMap } from '../content/iconMap';
 
 export default function Results() {
-  const { title, description, categories, fallbackCategory } = site.resultsSection;
-  const resultsData = site.resultsList;
+  const { title, description, categories, fallbackCategory, list } = results;
 
   return (
     <section id="results" className="py-24">
@@ -21,7 +20,7 @@ export default function Results() {
           <p className="text-uk-steel text-lg mb-12 max-w-2xl">{description}</p>
 
           <div className="grid sm:grid-cols-2 gap-6">
-            {resultsData.list.map((item, idx) => {
+            {list.map((item, idx) => {
               const cat = categories.find(c => c.name === item.category);
               const IconComponent = iconMap[cat?.icon || ''] || Trophy;
               const colorClass = cat?.color || fallbackCategory;

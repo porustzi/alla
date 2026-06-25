@@ -1,289 +1,287 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: porustzi/alla
   branch: master
+  auth_endpoint: /api/auth
+
+publish_mode: editorial_workflow
+site_url: https://alla.pages.dev
+display_url: https://alla.pages.dev
+logo_url: /vite.svg
 
 media_folder: public/images
 public_folder: /images
 
 collections:
-  - name: site
-    label: Весь сайт
-    delete: false
-    editor:
-      preview: false
-    files:
-      - name: all_content
-        label: Весь сайт (зверху донизу)
-        file: src/content/site.json
-        format: json
+  - name: general
+    label: Загальні налаштування
+    file: content/pages/general.json
+    format: json
+    fields:
+      - label: Назва сайту
+        name: site_name
+        widget: string
+      - label: Навігація
+        name: navbar
+        widget: object
         fields:
-          - label: '══════════ 1. ГОЛОВНИЙ ЕКРАН ══════════'
-            name: _sep_hero
+          - label: Логотип
+            name: logo
+            widget: string
+          - label: Посилання меню
+            name: links
+            widget: list
+            summary: '{{fields.label}}'
+            fields:
+              - label: Якір (id)
+                name: id
+                widget: string
+              - label: Назва
+                name: label
+                widget: string
+          - label: Напис "Меню"
+            name: menuLabel
+            widget: string
+      - label: Футер
+        name: footer
+        widget: object
+        fields:
+          - label: Логотип
+            name: logo
+            widget: string
+          - label: Текст прав
+            name: rights
+            widget: string
+
+  - name: hero
+    label: Головний екран
+    file: content/pages/hero.json
+    format: json
+    fields:
+      - label: Бейдж
+        name: badge
+        widget: string
+      - label: Кнопка 1
+        name: primaryButton
+        widget: string
+      - label: Кнопка 2
+        name: secondaryButton
+        widget: string
+      - label: Профіль вчителя
+        name: profile
+        widget: object
+        fields:
+          - label: Ім'я
+            name: name
+            widget: string
+          - label: Посада
+            name: title
+            widget: string
+          - label: Кредо
+            name: credo
+            widget: text
+          - label: Освіта
+            name: education
+            widget: text
+          - label: Досвід
+            name: experience
+            widget: string
+          - label: Рівень мови
+            name: language_level
+            widget: string
+          - label: Категорія
+            name: category
+            widget: string
+
+  - name: about
+    label: Секція «Про мене»
+    file: content/pages/about.json
+    format: json
+    fields:
+      - label: Заголовок
+        name: title
+        widget: string
+      - label: Картки з деталями
+        name: details
+        widget: list
+        summary: '{{fields.label}}'
+        fields:
+          - label: Підпис
+            name: label
+            widget: string
+          - label: Іконка
+            name: icon
+            widget: select
+            options:
+              - Award
+              - BookOpen
+              - BadgeCheck
+              - Briefcase
+              - FlaskConical
+              - Globe
+              - GraduationCap
+              - Trophy
+              - Users
+          - label: Поле профілю
+            name: field
+            widget: string
+      - label: Заголовок блоку досягнень
+        name: achievementsTitle
+        widget: string
+
+  - name: achievements
+    label: Досягнення
+    folder: content/achievements
+    create: true
+    format: json
+    extension: json
+    fields:
+      - label: Список досягнень
+        name: list
+        widget: list
+        summary: '{{fields.title}}'
+        fields:
+          - label: Назва
+            name: title
+            widget: string
+          - label: Опис
+            name: description
+            widget: text
+          - label: Іконка
+            name: icon
+            widget: select
+            options:
+              - Award
+              - BookOpen
+              - BadgeCheck
+              - Briefcase
+              - FlaskConical
+              - Globe
+              - GraduationCap
+              - Trophy
+              - Users
+
+  - name: results
+    label: Секція «Результати»
+    file: content/pages/results.json
+    format: json
+    fields:
+      - label: Заголовок
+        name: title
+        widget: string
+      - label: Опис
+        name: description
+        widget: text
+      - label: Категорії
+        name: categories
+        widget: list
+        summary: '{{fields.name}}'
+        fields:
+          - label: Назва
+            name: name
+            widget: string
+          - label: Іконка
+            name: icon
+            widget: select
+            options:
+              - Award
+              - BookOpen
+              - BadgeCheck
+              - Briefcase
+              - FlaskConical
+              - Globe
+              - GraduationCap
+              - Trophy
+              - Users
+          - label: CSS колір
+            name: color
+            widget: string
+      - label: Запасний колір
+        name: fallbackCategory
+        widget: string
+      - label: Результати
+        name: list
+        widget: list
+        summary: '{{fields.title}}'
+        fields:
+          - label: Заголовок
+            name: title
+            widget: string
+          - label: Опис
+            name: description
+            widget: text
+          - label: Категорія
+            name: category
+            widget: select
+            options:
+              - Успішність
+              - Олімпіади
+              - Конкурси
+              - Проєкти
+          - label: Рік
+            name: year
+            widget: number
+            value_type: int
+
+  - name: methods
+    label: Секція «Методична робота»
+    file: content/pages/methods.json
+    format: json
+    fields:
+      - label: Заголовок
+        name: title
+        widget: string
+      - label: Текст кнопки «читати далі»
+        name: readMore
+        widget: string
+      - label: Матеріали
+        name: list
+        widget: list
+        summary: '{{fields.title}}'
+        fields:
+          - label: Тема
+            name: title
+            widget: string
+          - label: Опис
+            name: description
+            widget: text
+          - label: Посилання
+            name: link
             widget: string
             required: false
 
-          - label: Головний екран
-            name: heroSection
-            widget: object
-            fields:
-              - label: Бейдж
-                name: badge
-                widget: string
-              - label: Кнопка 1 (текст)
-                name: primaryButton
-                widget: string
-              - label: Кнопка 2 (текст)
-                name: secondaryButton
-                widget: string
-
-          - label: '══════════ 2. ПРОФІЛЬ ══════════'
-            name: _sep_profile
+  - name: contact
+    label: Секція «Контакти»
+    file: content/pages/contact.json
+    format: json
+    fields:
+      - label: Заголовок
+        name: title
+        widget: string
+      - label: Підпис Email
+        name: emailLabel
+        widget: string
+      - label: Підпис телефону
+        name: phoneLabel
+        widget: string
+      - label: Підпис профілю
+        name: profileLabel
+        widget: string
+      - label: Email
+        name: email
+        widget: string
+      - label: Телефон
+        name: phone
+        widget: string
+        required: false
+      - label: Посилання
+        name: links
+        widget: list
+        summary: '{{fields.platform}}'
+        fields:
+          - label: Платформа
+            name: platform
             widget: string
-            required: false
-
-          - label: Персональні дані
-            name: profileData
-            widget: object
-            fields:
-              - label: Ім'я
-                name: name
-                widget: string
-              - label: Посада
-                name: title
-                widget: string
-              - label: Кредо
-                name: credo
-                widget: text
-              - label: Освіта
-                name: education
-                widget: text
-              - label: Досвід
-                name: experience
-                widget: text
-              - label: Рівень мови
-                name: language_level
-                widget: string
-              - label: Категорія
-                name: category
-                widget: string
-
-          - label: '══════════ 3. ПРО МЕНЕ ══════════'
-            name: _sep_about
+          - label: URL
+            name: url
             widget: string
-            required: false
-
-          - label: Секція "Про мене"
-            name: aboutSection
-            widget: object
-            fields:
-              - label: Заголовок секції
-                name: title
-                widget: string
-              - label: Картки з деталями
-                name: details
-                widget: list
-                summary: '{{fields.label}}'
-                fields:
-                  - label: Підпис
-                    name: label
-                    widget: string
-                  - label: Іконка
-                    name: icon
-                    widget: select
-                    options:
-                      - Award
-                      - BookOpen
-                      - BadgeCheck
-                      - Briefcase
-                      - FlaskConical
-                      - Globe
-                      - GraduationCap
-                      - Trophy
-                      - Users
-                  - label: Поле профілю
-                    name: field
-                    widget: string
-              - label: Заголовок блоку досягнень
-                name: achievementsTitle
-                widget: string
-
-          - label: Список досягнень
-            name: achievementsList
-            widget: object
-            fields:
-              - label: Досягнення
-                name: list
-                widget: list
-                summary: '{{fields.title}}'
-                fields:
-                  - label: Назва
-                    name: title
-                    widget: string
-                  - label: Опис
-                    name: description
-                    widget: text
-                  - label: Іконка
-                    name: icon
-                    widget: select
-                    options:
-                      - Award
-                      - BookOpen
-                      - BadgeCheck
-                      - Briefcase
-                      - FlaskConical
-                      - Globe
-                      - GraduationCap
-                      - Trophy
-                      - Users
-
-          - label: '══════════ 4. РЕЗУЛЬТАТИ ══════════'
-            name: _sep_results
-            widget: string
-            required: false
-
-          - label: Налаштування секції "Результати"
-            name: resultsSection
-            widget: object
-            fields:
-              - label: Заголовок секції
-                name: title
-                widget: string
-              - label: Опис
-                name: description
-                widget: text
-              - label: Категорії
-                name: categories
-                widget: list
-                summary: '{{fields.name}}'
-                fields:
-                  - label: Назва
-                    name: name
-                    widget: string
-                  - label: Іконка
-                    name: icon
-                    widget: select
-                    options:
-                      - Award
-                      - BookOpen
-                      - BadgeCheck
-                      - Briefcase
-                      - FlaskConical
-                      - Globe
-                      - GraduationCap
-                      - Trophy
-                      - Users
-                  - label: CSS колір
-                    name: color
-                    widget: string
-              - label: Запасний колір
-                name: fallbackCategory
-                widget: string
-
-          - label: Список результатів учнів
-            name: resultsList
-            widget: object
-            fields:
-              - label: Результати
-                name: list
-                widget: list
-                summary: '{{fields.title}}'
-                fields:
-                  - label: Заголовок
-                    name: title
-                    widget: string
-                  - label: Опис
-                    name: description
-                    widget: text
-                  - label: Категорія
-                    name: category
-                    widget: select
-                    options:
-                      - Успішність
-                      - Олімпіади
-                      - Конкурси
-                      - Проєкти
-                  - label: Рік
-                    name: year
-                    widget: number
-                    value_type: int
-
-          - label: '══════════ 5. МЕТОДИЧНА РОБОТА ══════════'
-            name: _sep_methods
-            widget: string
-            required: false
-
-          - label: Налаштування секції "Методична робота"
-            name: methodsSection
-            widget: object
-            fields:
-              - label: Заголовок секції
-                name: title
-                widget: string
-              - label: Текст кнопки "читати далі"
-                name: readMore
-                widget: string
-
-          - label: Список методичних матеріалів
-            name: methodsList
-            widget: object
-            fields:
-              - label: Матеріали
-                name: list
-                widget: list
-                summary: '{{fields.title}}'
-                fields:
-                  - label: Тема
-                    name: title
-                    widget: string
-                  - label: Опис
-                    name: description
-                    widget: text
-                  - label: Посилання
-                    name: link
-                    widget: string
-                    required: false
-
-          - label: '══════════ 6. КОНТАКТИ ══════════'
-            name: _sep_contact
-            widget: string
-            required: false
-
-          - label: Налаштування секції "Контакти"
-            name: contactSection
-            widget: object
-            fields:
-              - label: Заголовок секції
-                name: title
-                widget: string
-              - label: Підпис для Email
-                name: emailLabel
-                widget: string
-              - label: Підпис для телефону
-                name: phoneLabel
-                widget: string
-              - label: Підпис для профілю
-                name: profileLabel
-                widget: string
-
-          - label: Контактні дані
-            name: contactInfo
-            widget: object
-            fields:
-              - label: Email
-                name: email
-                widget: string
-              - label: Телефон
-                name: phone
-                widget: string
-                required: false
-              - label: Посилання
-                name: links
-                widget: list
-                summary: '{{fields.platform}}'
-                fields:
-                  - label: Платформа
-                    name: platform
-                    widget: string
-                  - label: URL
-                    name: url
-                    widget: string
