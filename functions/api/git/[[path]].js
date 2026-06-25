@@ -98,6 +98,23 @@ export async function onRequest(context) {
     if (!ghRes.ok) {
       return r({ error: 'github_error', status: ghRes.status, details: ghData }, ghRes.status);
     }
+
+    if (targetMethod === 'PUT') {
+      const cfToken = env.CF_API_TOKEN;
+      const cfAccount = env.CF_ACCOUNT_ID;
+      if (cfToken && cfAccount) {
+        context.waitUntil((async () => {
+          try {
+            await fetch(`https://api.cloudflare.com/client/v4/accounts/${cfAccount}/pages/projects/alla/deployments`, {
+              method: 'POST',
+              headers: { 'Authorization': `Bearer ${cfToken}`, 'Content-Type': 'application/json' },
+              body: JSON.stringify({ branch: 'master' }),
+            });
+          } catch {}
+        })());
+      }
+    }
+
     return r(ghData);
   } catch (e) {
     return r({ error: 'proxy_error', detail: e.message }, 502);
