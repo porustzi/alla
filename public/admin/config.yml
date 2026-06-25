@@ -5,8 +5,8 @@ backend:
   auth_endpoint: /api/auth
 
 publish_mode: editorial_workflow
-site_url: https://alla.pages.dev
-display_url: https://alla.pages.dev
+site_url: https://alla-ahb.pages.dev
+display_url: https://alla-ahb.pages.dev
 logo_url: /vite.svg
 
 media_folder: public/images
