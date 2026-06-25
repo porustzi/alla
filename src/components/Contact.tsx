@@ -6,7 +6,7 @@ export default function Contact() {
   const { title, emailLabel, phoneLabel, profileLabel, email, phone, links } = contact;
 
   return (
-    <section id="contact" className="py-24">
+    <section id="contact" className="py-16 sm:py-24">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0 }}
@@ -14,8 +14,8 @@ export default function Contact() {
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-3xl sm:text-4xl font-bold text-uk-navy mb-4">{title}</h2>
-          <div className="w-16 h-1 bg-uk-red rounded-full mb-12" />
+          <h2 className="text-2xl sm:text-4xl font-bold text-uk-navy mb-3 sm:mb-4">{title}</h2>
+          <div className="w-12 sm:w-16 h-1 bg-uk-red rounded-full mb-8 sm:mb-12" />
 
           <div className="max-w-xl mx-auto space-y-6">
             <motion.a
@@ -24,10 +24,10 @@ export default function Contact() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="flex items-center gap-4 p-4 bg-white rounded-xl border border-uk-sky/10 hover:shadow-sm transition-all group"
+              className="flex items-center gap-3 sm:gap-4 p-3 sm:p-4 bg-white rounded-xl border border-uk-sky/10 hover:shadow-sm transition-all group"
             >
-              <div className="w-12 h-12 rounded-lg bg-uk-navy/5 flex items-center justify-center group-hover:bg-uk-red/5 transition-colors">
-                <Mail size={22} className="text-uk-red" aria-hidden={true} />
+              <div className="w-10 sm:w-12 h-10 sm:h-12 rounded-lg bg-uk-navy/5 flex items-center justify-center group-hover:bg-uk-red/5 transition-colors shrink-0">
+                <Mail size={20} className="text-uk-red" aria-hidden={true} />
               </div>
               <div>
                 <p className="text-xs text-uk-steel/60 uppercase tracking-wider font-medium">{emailLabel}</p>
@@ -42,10 +42,10 @@ export default function Contact() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.2 }}
-                className="flex items-center gap-4 p-4 bg-white rounded-xl border border-uk-sky/10 hover:shadow-sm transition-all group"
+                className="flex items-center gap-3 sm:gap-4 p-3 sm:p-4 bg-white rounded-xl border border-uk-sky/10 hover:shadow-sm transition-all group"
               >
-                <div className="w-12 h-12 rounded-lg bg-uk-navy/5 flex items-center justify-center group-hover:bg-uk-red/5 transition-colors">
-                  <Phone size={22} className="text-uk-red" aria-hidden={true} />
+                <div className="w-10 sm:w-12 h-10 sm:h-12 rounded-lg bg-uk-navy/5 flex items-center justify-center group-hover:bg-uk-red/5 transition-colors shrink-0">
+                  <Phone size={20} className="text-uk-red" aria-hidden={true} />
                 </div>
                 <div>
                   <p className="text-xs text-uk-steel/60 uppercase tracking-wider font-medium">{phoneLabel}</p>
@@ -64,10 +64,10 @@ export default function Contact() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.3 + idx * 0.1 }}
-                className="flex items-center gap-4 p-4 bg-white rounded-xl border border-uk-sky/10 hover:shadow-sm transition-all group"
+                className="flex items-center gap-3 sm:gap-4 p-3 sm:p-4 bg-white rounded-xl border border-uk-sky/10 hover:shadow-sm transition-all group"
               >
-                <div className="w-12 h-12 rounded-lg bg-uk-navy/5 flex items-center justify-center group-hover:bg-uk-red/5 transition-colors">
-                  <ExternalLink size={22} className="text-uk-red" aria-hidden={true} />
+                <div className="w-10 sm:w-12 h-10 sm:h-12 rounded-lg bg-uk-navy/5 flex items-center justify-center group-hover:bg-uk-red/5 transition-colors shrink-0">
+                  <ExternalLink size={20} className="text-uk-red" aria-hidden={true} />
                 </div>
                 <div className="flex-1">
                   <p className="text-xs text-uk-steel/60 uppercase tracking-wider font-medium">{profileLabel}</p>

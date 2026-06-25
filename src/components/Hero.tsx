@@ -18,26 +18,26 @@ export default function Hero() {
             <span className="w-2 h-2 rounded-full bg-uk-red animate-pulse" />
             {badge}
           </div>
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold text-uk-navy leading-tight mb-6">
+          <h1 className="text-3xl sm:text-5xl lg:text-7xl font-bold text-uk-navy leading-tight mb-4 sm:mb-6">
             {profile.name}
           </h1>
-          <p className="text-xl sm:text-2xl text-uk-steel font-light mb-4">
+          <p className="text-lg sm:text-2xl text-uk-steel font-light mb-3 sm:mb-4">
             {profile.title}
           </p>
-          <p className="max-w-2xl mx-auto text-lg text-uk-steel/80 italic leading-relaxed mb-10">
+          <p className="max-w-2xl mx-auto text-base sm:text-lg text-uk-steel/80 italic leading-relaxed mb-8 sm:mb-10">
             &ldquo;{profile.credo}&rdquo;
           </p>
-          <div className="flex items-center justify-center gap-4">
+          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
             <a
               href="#about"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-uk-navy text-white rounded-lg hover:bg-uk-navy/90 transition-colors font-medium"
+              className="inline-flex items-center gap-2 px-5 sm:px-6 py-3 bg-uk-navy text-white rounded-lg hover:bg-uk-navy/90 transition-colors font-medium text-sm sm:text-base"
             >
               {primaryButton}
               <ArrowDown size={18} aria-hidden={true} />
             </a>
             <a
               href="#contact"
-              className="inline-flex items-center gap-2 px-6 py-3 border-2 border-uk-navy/20 text-uk-navy rounded-lg hover:border-uk-navy/40 transition-colors font-medium"
+              className="inline-flex items-center gap-2 px-5 sm:px-6 py-3 border-2 border-uk-navy/20 text-uk-navy rounded-lg hover:border-uk-navy/40 transition-colors font-medium text-sm sm:text-base"
             >
               {secondaryButton}
             </a>
