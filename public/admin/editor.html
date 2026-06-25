@@ -118,9 +118,16 @@
       c.innerHTML = h;
     }
 
+    const ICONS = ['Award','BookOpen','BadgeCheck','Briefcase','FlaskConical','Globe','GraduationCap','Trophy','Users'];
+    const HIDDEN = ['color','fallbackCategory'];
+
     function field(key, val, path) {
       if (val === null || val === undefined) return '';
+      if (HIDDEN.includes(key)) return '';
       if (typeof val === 'string') {
+        if (key === 'icon') {
+          return `<div class="row"><label>${Lb(key)}</label><select data-path="${path}">${ICONS.map(i => `<option value="${i}" ${val===i?'selected':''}>${i}</option>`).join('')}</select></div>`;
+        }
         const big = val.length > 60 || val.includes('\n');
         return `<div class="row"><label>${Lb(key)}</label>${big ? `<textarea data-path="${path}" rows="3">${esc(val)}</textarea>` : `<input type="text" data-path="${path}" value="${esc(val)}">`}</div>`;
       }
