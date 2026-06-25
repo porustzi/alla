@@ -7,57 +7,46 @@
   <style>
     *{margin:0;padding:0;box-sizing:border-box}
     body{font-family:Inter,system-ui,sans-serif;background:#f1f5f9;min-height:100vh;display:flex;flex-direction:column}
-    header{background:#1D3557;color:#fff;padding:10px 24px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;position:sticky;top:0;z-index:10}
+    header{background:#1D3557;color:#fff;padding:10px 24px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
     header a{color:#94a3b8;text-decoration:none;font-size:14px}
     header a:hover{color:#fff}
     header h1{font-size:16px;font-weight:600}
     header .sep{color:#475569}
-    .toolbar{background:#fff;border-bottom:1px solid #e2e8f0;padding:10px 24px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;position:sticky;top:48px;z-index:10}
+    .toolbar{background:#fff;border-bottom:1px solid #e2e8f0;padding:10px 24px;display:flex;align-items:center;gap:10px;position:sticky;top:48px;z-index:10}
     .toolbar button{padding:8px 18px;border-radius:7px;font-size:13px;font-weight:600;cursor:pointer;border:none}
-    .btn-save{background:#1D3557;color:#fff}
-    .btn-save:hover{background:#152b47}
-    .btn-save:disabled{opacity:.5;cursor:not-allowed}
+    .btn-save{background:#1D3557;color:#fff}.btn-save:hover{background:#152b47}.btn-save:disabled{opacity:.5}
     .btn-json{background:#f1f5f9;color:#475569}
     .msg{padding:10px 24px;font-size:13px;display:none}
     .msg.ok{display:block;background:#f0fdf4;color:#166534;border-bottom:1px solid #bbf7d0}
     .msg.err{display:block;background:#fef2f2;color:#991b1b;border-bottom:1px solid #fecaca}
-    .msg.info{display:block;background:#eff6ff;color:#1e40af;border-bottom:1px solid #bfdbfe}
-    .content{flex:1;max-width:860px;margin:0 auto;padding:24px 16px 60px;width:100%}
-    .section{margin-bottom:32px}
-    .section-title{font-size:18px;font-weight:700;color:#1D3557;margin-bottom:16px;padding-bottom:8px;border-bottom:2px solid #E63946;display:flex;align-items:center;gap:8px}
-    .section-title .icon{width:28px;height:28px;border-radius:6px;background:#fef2f2;color:#E63946;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700}
-    .field{margin-bottom:16px}
-    .field-label{display:block;font-size:13px;font-weight:600;color:#334155;margin-bottom:6px}
-    .field-hint{font-size:11px;color:#94a3b8;font-weight:400;margin-left:6px}
-    input[type=text],input[type=url],input[type=number],textarea,select{width:100%;padding:10px 14px;border:1.5px solid #e2e8f0;border-radius:8px;font-size:14px;font-family:inherit;outline:none;transition:border-color .2s;background:#fff}
+    .content{flex:1;max-width:700px;margin:0 auto;padding:20px 16px 60px;width:100%}
+    .block{margin-bottom:20px}
+    .block-title{font-size:14px;font-weight:700;color:#1D3557;margin-bottom:10px;padding-bottom:6px;border-bottom:2px solid #E63946}
+    .row{margin-bottom:12px}
+    .row label{display:block;font-size:12px;font-weight:600;color:#475569;margin-bottom:4px}
+    input[type=text],input[type=url],input[type=number],textarea,select{width:100%;padding:9px 12px;border:1.5px solid #e2e8f0;border-radius:8px;font-size:14px;font-family:inherit;outline:none;background:#fff}
     input:focus,textarea:focus,select:focus{border-color:#E63946}
-    textarea{min-height:80px;resize:vertical;line-height:1.5}
-    .list-item{background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:16px;margin-bottom:10px;position:relative}
-    .list-item .remove-btn{position:absolute;top:8px;right:8px;width:28px;height:28px;border-radius:6px;border:none;background:#fef2f2;color:#E63946;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center}
-    .list-item .remove-btn:hover{background:#fecaca}
-    .add-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border:2px dashed #cbd5e1;border-radius:8px;background:transparent;color:#64748b;font-size:13px;font-weight:600;cursor:pointer;width:100%;justify-content:center}
+    textarea{min-height:70px;resize:vertical;line-height:1.5}
+    .list-row{background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:12px;margin-bottom:8px;position:relative}
+    .list-row .del{position:absolute;top:6px;right:6px;width:24px;height:24px;border-radius:5px;border:none;background:#fef2f2;color:#E63946;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center}
+    .list-row .del:hover{background:#fecaca}
+    .add-btn{display:inline-flex;align-items:center;gap:4px;padding:7px 14px;border:2px dashed #cbd5e1;border-radius:8px;background:transparent;color:#64748b;font-size:12px;font-weight:600;cursor:pointer;width:100%;justify-content:center;margin-top:6px}
     .add-btn:hover{border-color:#E63946;color:#E63946;background:#fef2f2}
-    .nested-object{background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:16px}
-    .columns{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
-    .json-toggle{position:fixed;bottom:16px;right:16px;z-index:20}
-    .json-toggle button{width:44px;height:44px;border-radius:50%;border:none;background:#1D3557;color:#fff;font-size:18px;cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,.15)}
-    .tab-bar{display:flex;gap:2px;margin-bottom:24px;background:#e2e8f0;border-radius:10px;padding:3px}
-    .tab-bar button{flex:1;padding:8px 12px;border:none;background:transparent;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;color:#64748b}
-    .tab-bar button.active{background:#fff;color:#1D3557;box-shadow:0 1px 3px rgba(0,0,0,.08)}
-    .loading{padding:60px 24px;text-align:center;color:#94a3b8;font-size:15px}
-    @media(max-width:600px){header{padding:8px 16px}.toolbar{padding:8px 16px;top:44px}.content{padding:16px 12px 60px}.columns{grid-template-columns:1fr}}
-    .raw-editor{display:none;flex:1;flex-direction:column}
-    .raw-editor.show{display:flex}
-    .raw-editor textarea{flex:1;border:none;outline:none;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.6;resize:none;padding:20px 24px;background:#fafbfc;width:100%}
-    .form-view{display:block}
+    .cols{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    @media(max-width:500px){.cols{grid-template-columns:1fr}header{padding:8px 14px}.toolbar{padding:8px 14px}.content{padding:12px 10px 60px}}
+    .raw-editor{display:none;flex:1;flex-direction:column}.raw-editor.show{display:flex}
+    .raw-editor textarea{flex:1;border:none;outline:none;font-family:monospace;font-size:13px;line-height:1.5;resize:none;padding:16px 20px;background:#fafbfc}
     .form-view.hidden{display:none}
+    .json-btn{position:fixed;bottom:16px;right:16px;z-index:20}
+    .json-btn button{width:40px;height:40px;border-radius:50%;border:none;background:#1D3557;color:#fff;font-size:16px;cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,.15)}
+    .loading{padding:40px;text-align:center;color:#94a3b8;font-size:14px}
   </style>
 </head>
 <body>
   <header>
     <a href="/admin/dashboard.html">← Дашборд</a>
     <span class="sep">/</span>
-    <h1 id="title">Редактор</h1>
+    <h1 id="title"></h1>
   </header>
   <div class="msg" id="msg"></div>
   <div class="toolbar">
@@ -65,253 +54,176 @@
     <span style="flex:1"></span>
     <button class="btn-save" id="saveBtn" onclick="save()">Зберегти</button>
   </div>
-  <div class="form-view" id="formView">
-    <div class="content" id="formContent"><div class="loading">Завантаження...</div></div>
-  </div>
-  <div class="raw-editor" id="rawView">
-    <textarea id="rawEditor" placeholder="Завантаження..." spellcheck="false"></textarea>
-  </div>
-  <div class="json-toggle"><button onclick="toggleView()" title="JSON">&#x7B;&#x7D;</button></div>
+  <div class="form-view" id="formView"><div class="content" id="formContent"><div class="loading">Завантаження...</div></div></div>
+  <div class="raw-editor" id="rawView"><textarea id="rawEditor" spellcheck="false"></textarea></div>
+  <div class="json-btn"><button onclick="toggleView()">{ }</button></div>
 
   <script>
     const token = localStorage.getItem('admin_token');
-    if (!token) { window.location.href = '/admin/'; }
+    if (!token) location.href = '/admin/';
+    const p = new URLSearchParams(location.search);
+    const path = p.get('path'), name = p.get('name') || path;
+    document.getElementById('title').textContent = name || '';
+    let sha = null, data = null, view = 'form';
+    if (!path) document.getElementById('formContent').innerHTML = '<div class="loading">Немає файлу</div>';
+    else load();
 
-    const params = new URLSearchParams(window.location.search);
-    const filePath = params.get('path');
-    const fileName = params.get('name') || filePath;
-    document.getElementById('title').textContent = fileName || 'Редактор';
-
-    let fileSha = null;
-    let currentData = null;
-    let viewMode = 'form';
-
-    if (!filePath) { document.getElementById('formContent').innerHTML = '<div class="loading">Помилка: не вказано файл</div>'; }
-    else loadFile();
-
-    async function loadFile() {
+    async function load() {
       try {
-        const res = await fetch(`/api/git/github/contents/${filePath}?ref=master`, { headers: { 'Authorization': `Bearer ${token}` } });
-        if (!res.ok) throw new Error('Помилка завантаження');
-        const data = await res.json();
-        fileSha = data.sha || null;
-        const raw = data.content ? decodeURIComponent(escape(atob(data.content))) : JSON.stringify(data, null, 2);
-        currentData = JSON.parse(raw);
-        document.getElementById('rawEditor').value = JSON.stringify(currentData, null, 2);
-        renderForm(currentData);
-      } catch (e) {
-        document.getElementById('formContent').innerHTML = '<div class="loading">Помилка: ' + e.message + '</div>';
-        document.getElementById('rawEditor').value = 'Помилка: ' + e.message;
-      }
+        const r = await fetch(`/api/git/github/contents/${path}?ref=master`, { headers: { Authorization: `Bearer ${token}` } });
+        if (!r.ok) throw new Error('Помилка');
+        const d = await r.json(); sha = d.sha || null;
+        data = JSON.parse(d.content ? decodeURIComponent(escape(atob(d.content))) : '{}');
+        document.getElementById('rawEditor').value = JSON.stringify(data, null, 2);
+        render();
+      } catch(e) { document.getElementById('formContent').innerHTML = `<div class="loading">${e.message}</div>`; }
     }
 
     function toggleView() {
       const btn = document.getElementById('toggleBtn');
-      if (viewMode === 'form') {
-        viewMode = 'raw';
-        btn.textContent = 'Форма';
+      if (view === 'form') { view = 'raw'; btn.textContent = 'Форма';
         document.getElementById('formView').classList.add('hidden');
         document.getElementById('rawView').classList.add('show');
-        document.getElementById('rawEditor').value = JSON.stringify(collectForm(), null, 2);
-      } else {
-        viewMode = 'form';
-        btn.textContent = 'JSON';
-        try {
-          currentData = JSON.parse(document.getElementById('rawEditor').value);
-          renderForm(currentData);
-        } catch(e) { msg('Невірний JSON: ' + e.message, 'err'); return; }
+        document.getElementById('rawEditor').value = JSON.stringify(collect(), null, 2);
+      } else { view = 'form'; btn.textContent = 'JSON';
+        try { data = JSON.parse(document.getElementById('rawEditor').value); render(); }
+        catch(e) { msg('Невірний JSON: ' + e.message, 'err'); return; }
         document.getElementById('formView').classList.remove('hidden');
         document.getElementById('rawView').classList.remove('show');
       }
     }
 
-    const fieldLabels = {
-      badge:'Бейдж', primaryButton:'Кнопка 1', secondaryButton:'Кнопка 2',
-      profile:'Профіль', name:'Ім\'я', title:'Заголовок', credo:'Кредо',
+    const L = {
+      badge:'Бейдж', primaryButton:'Кнопка "Дізнатись більше"', secondaryButton:'Кнопка "Контакти"',
+      name:'Ім\'я', title:'Посада', credo:'Кредо',
       education:'Освіта', experience:'Досвід', language_level:'Рівень мови', category:'Категорія',
-      details:'Деталі', label:'Підпис', icon:'Іконка', field:'Поле профілю',
-      achievementsTitle:'Заголовок досягнень', list:'Список', description:'Опис',
-      categories:'Категорії', color:'CSS колір', fallbackCategory:'Запасний колір',
-      year:'Рік', readMore:'Текст "читати далі"', link:'Посилання',
+      details:'Картки деталей', label:'Підпис', icon:'Іконка', field:'Поле', achievementsTitle:'Заголовок досягнень',
+      description:'Опис', categories:'Категорії результатів', color:'Колір бейджа (CSS)',
+      fallbackCategory:'Колір для невідомих категорій', year:'Рік', readMore:'Текст "читати далі"',
       emailLabel:'Підпис Email', phoneLabel:'Підпис телефону', profileLabel:'Підпис профілю',
-      email:'Email', phone:'Телефон', links:'Посилання', platform:'Платформа', url:'URL',
-      site_name:'Назва сайту', navbar:'Навігація', logo:'Логотип',
-      footer:'Футер', rights:'Текст прав', menuLabel:'Меню',
+      email:'Email', phone:'Телефон', links:'Соцмережі', platform:'Назва', url:'Посилання',
+      site_name:'Назва сайту', logo:'Логотип', rights:'Копірайт', menuLabel:'Напис меню',
+      list:'Елементи', link:'Посилання',
     };
+    function Lb(k) { return L[k] || k.replace(/_/g,' ').replace(/\b\w/g,c=>c.toUpperCase()); }
 
-    function labelFor(key) { return fieldLabels[key] || key.replace(/_/g,' ').replace(/\b\w/g,l=>l.toUpperCase()); }
-
-    function renderForm(data) {
-      const container = document.getElementById('formContent');
-      let html = '';
-      const keys = Object.keys(data);
-      if (keys.length > 4) {
-        html += '<div class="tab-bar">';
-        keys.forEach((k,i) => html += `<button class="${i===0?'active':''}" onclick="switchTab(event,'tab-${k}')">${labelFor(k)}</button>`);
-        html += '</div>';
+    function render() {
+      const c = document.getElementById('formContent');
+      let h = '';
+      for (const k of Object.keys(data)) {
+        h += `<div class="block"><div class="block-title">${Lb(k)}</div>`;
+        h += field(k, data[k], k);
+        h += `</div>`;
       }
-      keys.forEach((k,i) => {
-        html += `<div class="section" id="tab-${k}" style="${keys.length>4&&i>0?'display:none':''}">`;
-        html += `<div class="section-title"><div class="icon">${labelFor(k)[0]}</div>${labelFor(k)}</div>`;
-        html += renderValue(k, data[k], '');
-        html += '</div>';
-      });
-      container.innerHTML = html;
+      c.innerHTML = h;
     }
 
-    function renderValue(key, value, path) {
-      const fp = path ? path + '.' + key : key;
-      if (value === null || value === undefined) return '';
-      if (typeof value === 'string') {
-        const isLong = value.length > 80 || value.includes('\n');
-        if (isLong) return `<div class="field"><label class="field-label">${labelFor(key)}</label><textarea data-path="${fp}" rows="4">${esc(value)}</textarea></div>`;
-        return `<div class="field"><label class="field-label">${labelFor(key)}</label><input type="text" data-path="${fp}" value="${esc(value)}" /></div>`;
+    function field(key, val, path) {
+      if (val === null || val === undefined) return '';
+      if (typeof val === 'string') {
+        const big = val.length > 60 || val.includes('\n');
+        return `<div class="row"><label>${Lb(key)}</label>${big ? `<textarea data-path="${path}" rows="3">${esc(val)}</textarea>` : `<input type="text" data-path="${path}" value="${esc(val)}">`}</div>`;
       }
-      if (typeof value === 'number') {
-        return `<div class="field"><label class="field-label">${labelFor(key)}</label><input type="number" data-path="${fp}" value="${value}" /></div>`;
-      }
-      if (typeof value === 'boolean') {
-        return `<div class="field"><label class="field-label">${labelFor(key)}</label><select data-path="${fp}"><option value="true" ${value?'selected':''}>Так</option><option value="false" ${!value?'selected':''}>Ні</option></select></div>`;
-      }
-      if (Array.isArray(value)) {
-        if (value.length === 0) {
-          return `<div class="field"><label class="field-label">${labelFor(key)}</label><div class="list-item" style="color:#94a3b8;text-align:center;padding:24px">Порожній список</div><button class="add-btn" onclick="addItem('${fp}')">+ Додати</button></div>`;
-        }
-        let html = `<div class="field"><label class="field-label">${labelFor(key)} <span class="field-hint">(${value.length} елем.)</span></label>`;
-        value.forEach((item, idx) => {
-          html += `<div class="list-item">`;
-          html += `<button class="remove-btn" onclick="removeItem('${fp}',${idx})">×</button>`;
-          if (typeof item === 'object' && !Array.isArray(item)) {
-            html += `<div class="columns">`;
-            Object.keys(item).forEach(k => { html += renderValue(k, item[k], fp + '.' + idx); });
-            html += `</div>`;
+      if (typeof val === 'number') return `<div class="row"><label>${Lb(key)}</label><input type="number" data-path="${path}" value="${val}"></div>`;
+      if (typeof val === 'boolean') return `<div class="row"><label>${Lb(key)}</label><select data-path="${path}"><option value="true" ${val?'selected':''}>Так</option><option value="false" ${!val?'selected':''}>Ні</option></select></div>`;
+      if (Array.isArray(val)) {
+        let h = `<div class="row"><label>${Lb(key)} (${val.length})</label>`;
+        val.forEach((item, i) => {
+          h += `<div class="list-row"><button class="del" onclick="del('${path}',${i})">×</button>`;
+          if (typeof item === 'object' && item) {
+            h += `<div class="cols">`;
+            for (const ik of Object.keys(item)) h += field(ik, item[ik], `${path}.${i}.${ik}`);
+            h += `</div>`;
           } else if (typeof item === 'string') {
-            html += renderInlineString(fp, idx, item);
+            h += `<input type="text" data-path="${path}.${i}" value="${esc(item)}">`;
           }
-          html += `</div>`;
+          h += `</div>`;
         });
-        html += `<button class="add-btn" onclick="addItem('${fp}')">+ Додати</button></div>`;
-        return html;
+        h += `<button class="add-btn" onclick="add('${path}')">+ Додати</button></div>`;
+        return h;
       }
-      if (typeof value === 'object') {
-        let html = `<div class="nested-object">`;
-        Object.keys(value).forEach(k => { html += renderValue(k, value[k], fp); });
-        html += `</div>`;
-        return html;
+      if (typeof val === 'object') {
+        let h = '';
+        for (const k of Object.keys(val)) h += field(k, val[k], `${path}.${k}`);
+        return h;
       }
-      return `<div class="field"><label class="field-label">${labelFor(key)}</label><input type="text" data-path="${fp}" value="${esc(String(value))}" /></div>`;
-    }
-
-    function renderInlineString(fp, idx, value) {
-      return `<div class="field" style="margin:0"><label class="field-label">Елемент ${idx+1}</label><input type="text" data-path="${fp}.${idx}" value="${esc(value)}" /></div>`;
-    }
-
-    function switchTab(e, tabId) {
-      e.target.parentElement.querySelectorAll('button').forEach(b => b.classList.remove('active'));
-      e.target.classList.add('active');
-      document.querySelectorAll('.section').forEach(s => s.style.display = 'none');
-      document.getElementById(tabId).style.display = 'block';
+      return `<div class="row"><label>${Lb(key)}</label><input type="text" data-path="${path}" value="${esc(String(val))}"></div>`;
     }
 
     function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 
-    function collectForm() {
-      const clone = JSON.parse(JSON.stringify(currentData));
-      const inputs = document.querySelectorAll('#formContent [data-path]');
-      inputs.forEach(el => {
-        const path = el.getAttribute('data-path');
-        const parts = parsePath(path);
-        let obj = clone;
-        for (let i = 0; i < parts.length - 1; i++) obj = obj[parts[i]];
-        const last = parts[parts.length - 1];
-        let val = el.value;
-        if (el.type === 'number') val = Number(val) || val;
-        if (el.tagName === 'SELECT') val = val === 'true' ? true : val === 'false' ? false : val;
-        obj[last] = val;
-      });
-      return clone;
-    }
-
     function parsePath(p) {
-      const parts = [];
-      let current = '', inBracket = false;
+      const r = []; let c = '';
       for (let i = 0; i < p.length; i++) {
         const ch = p[i];
-        if (ch === '[') { if (current) parts.push(current); current = ''; inBracket = true; }
-        else if (ch === ']') { parts.push(Number(current)); current = ''; inBracket = false; }
-        else if (ch === '.' && !inBracket) { if (current) parts.push(current); current = ''; }
-        else current += ch;
+        if (ch === '.') { if(c) r.push(isNaN(c)?c:Number(c)); c = ''; }
+        else c += ch;
       }
-      if (current) parts.push(isNaN(Number(current)) ? current : Number(current));
-      return parts;
+      if(c) r.push(isNaN(c)?c:Number(c));
+      return r;
     }
 
-    function addItem(path) {
-      const parts = parsePath(path);
-      let obj = currentData;
-      for (let i = 0; i < parts.length; i++) obj = obj[parts[i]];
-      if (!Array.isArray(obj)) return;
-      const first = obj[0];
-      if (typeof first === 'object') {
-        const template = {};
-        Object.keys(first).forEach(k => { template[k] = typeof first[k] === 'string' ? '' : typeof first[k] === 'number' ? 0 : first[k]; });
-        obj.push(template);
-      } else if (typeof first === 'string') {
-        obj.push('');
-      } else {
-        obj.push(null);
-      }
-      renderForm(currentData);
+    function collect() {
+      const d = JSON.parse(JSON.stringify(data));
+      document.querySelectorAll('#formContent [data-path]').forEach(el => {
+        const parts = parsePath(el.getAttribute('data-path'));
+        let obj = d;
+        for (let i = 0; i < parts.length - 1; i++) obj = obj[parts[i]];
+        const last = parts[parts.length - 1];
+        let v = el.value;
+        if (el.type === 'number') v = Number(v) || v;
+        if (el.tagName === 'SELECT') v = v === 'true' ? true : v === 'false' ? false : v;
+        obj[last] = v;
+      });
+      return d;
     }
 
-    function removeItem(path, idx) {
-      const parts = parsePath(path);
-      let obj = currentData;
-      for (let i = 0; i < parts.length; i++) obj = obj[parts[i]];
-      if (Array.isArray(obj)) obj.splice(idx, 1);
-      renderForm(currentData);
+    function add(pth) {
+      const parts = parsePath(pth); let o = data;
+      for (const p of parts) o = o[p];
+      if (!Array.isArray(o)) return;
+      const t = o[0];
+      if (t && typeof t === 'object') { const c = {}; Object.keys(t).forEach(k => c[k] = typeof t[k]==='string'?'':typeof t[k]==='number'?0:t[k]); o.push(c); }
+      else if (typeof t === 'string') o.push('');
+      else o.push(null);
+      render();
     }
 
-    function msg(text, type) {
-      const m = document.getElementById('msg');
-      m.textContent = text;
-      m.className = 'msg ' + type;
+    function del(pth, i) {
+      const parts = parsePath(pth); let o = data;
+      for (const p of parts) o = o[p];
+      if (Array.isArray(o)) o.splice(i, 1);
+      render();
+    }
+
+    function msg(t, type) {
+      const m = document.getElementById('msg'); m.textContent = t; m.className = 'msg '+type;
       if (type === 'ok') setTimeout(() => m.className = 'msg', 3000);
     }
 
-    function getData() {
-      if (viewMode === 'raw') {
-        try { return JSON.parse(document.getElementById('rawEditor').value); }
-        catch(e) { msg('Невірний JSON: ' + e.message, 'err'); return null; }
-      }
-      return collectForm();
+    function get() {
+      if (view === 'raw') { try { return JSON.parse(document.getElementById('rawEditor').value); } catch(e) { msg('Помилка JSON: '+e.message,'err'); return null; } }
+      return collect();
     }
 
     async function save() {
-      const data = getData();
-      if (!data) return;
-      const btn = document.getElementById('saveBtn');
-      btn.disabled = true;
-      btn.textContent = 'Збереження...';
-
+      const d = get(); if (!d) return;
+      const btn = document.getElementById('saveBtn'); btn.disabled = true; btn.textContent = '...';
       try {
-        const content = JSON.stringify(data, null, 2);
-        const body = { branch:'master', message:`Оновлено ${fileName||filePath} через адмінку`, content };
-        if (fileSha) body.sha = fileSha;
-
-        const res = await fetch(`/api/git/github/contents/${filePath}`, {
-          method:'POST', headers:{ 'Authorization':`Bearer ${token}`, 'Content-Type':'application/json' },
-          body: JSON.stringify(body),
+        const content = JSON.stringify(d, null, 2);
+        const body = { branch:'master', message:`Оновлено ${name||path}`, content };
+        if (sha) body.sha = sha;
+        const r = await fetch(`/api/git/github/contents/${path}`, {
+          method:'POST', headers:{ Authorization:`Bearer ${token}`, 'Content-Type':'application/json' }, body: JSON.stringify(body),
         });
-        if (!res.ok) { const err = await res.json(); throw new Error(err.details?.message || err.error || 'Помилка'); }
-        const result = await res.json();
-        if (result.content && result.content.sha) fileSha = result.content.sha;
-        currentData = data;
+        if (!r.ok) { const e = await r.json(); throw new Error(e.details?.message || e.error || 'Помилка'); }
+        const result = await r.json();
+        if (result.content?.sha) sha = result.content.sha;
+        data = d;
         document.getElementById('rawEditor').value = content;
         msg('Збережено!', 'ok');
-      } catch(e) { msg('Помилка: ' + e.message, 'err'); }
-      btn.disabled = false;
-      btn.textContent = 'Зберегти';
+      } catch(e) { msg(e.message, 'err'); }
+      btn.disabled = false; btn.textContent = 'Зберегти';
     }
   </script>
 </body>
