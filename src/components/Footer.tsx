@@ -67,7 +67,7 @@ export default function Footer() {
               rel="noopener noreferrer"
               className="relative block text-center text-rose-600 font-bold text-[11px] md:text-[10px] uppercase tracking-widest whitespace-nowrap hover:text-rose-500 hover:scale-105 transition-all duration-200"
             >
-              KRVTSV CORP
+              Сайт зроблений KRVTSV CORP
             </a>
           </div>
         </div>
